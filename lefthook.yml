@@ -1,0 +1,4 @@
+pre-commit:
+  commands:
+    backend-linter:
+      run: git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop -a --force-exclusion

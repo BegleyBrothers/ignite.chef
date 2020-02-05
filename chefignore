@@ -14,6 +14,9 @@ Thumbs.db
 ########
 .sass-cache
 
+# SPDX-License-Identifier: MIT
+# Copyright:: 2020, Begley Brothers.
+#
 # EDITORS #
 ###########
 .#*
@@ -30,6 +33,7 @@ mkmf.log
 REVISION
 TAGS*
 tmtags
+.vscode
 
 ## COMPILED ##
 ##############

@@ -1,6 +1,6 @@
-# Ignite CHANGELOG
+# weaveworks-ignite CHANGELOG
 
-This file is used to list changes made in each version of the ignite cookbook.
+This file is used to list changes made in each version of the weaveworks-ignite cookbook.
 
 # 0.1.0 (2020-02-04)
 
