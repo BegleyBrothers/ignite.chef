@@ -25,10 +25,10 @@ The Docker environment is where all the testing cruft is installed.
 ```bash
 docker build -t test-ignite .
 
-DKSOCKVOL=/var/run/docker.sock:/var/run/docker.sock
+DKSOCKVOL=/var/rlun/docker.sock:/var/run/docker.sock
 DKCKBKVOL=~/src/cookbook-ignite:/app
 DKRTVOL=/root/.dokken:/root/.dokken
-DKRTVOL=~/src/cookbook-ignite/.dokken/kitchen:/opt/kitchen
+DKRTVOL=~/src/cookbook-ignite/.chef:/opt/kitchen
 docker run -it -v $DKSOCKVOL -v $DKCKBKVOL -v $DKRTVOL -u `id -u $USER`:`id -g $USER` test-ignite bash
 appuser@<hash>:/app$ CHEF_LICENSE="accept" chef exec bundle install --path vendor/bundle
 appuser@<hash>:/app$ CHEF_LICENSE="accept" chef exec bundle exec kitchen test all

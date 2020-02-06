@@ -1,0 +1,51 @@
+{
+  "revision_id": "21328434317028121919bbf91767ef92dcb35d387a692222ab3015aea59d8609",
+  "name": "weaveworks-ignite",
+  "run_list": [
+    "recipe[weaveworks-ignite::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "weaveworks-ignite": {
+      "version": "0.1.0",
+      "identifier": "7d304d374176005dd5f9b9902a0df489870b1801",
+      "dotted_decimal_identifier": "35237480286483968.26412441370896909.268871513348097",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "git@github.com:BegleyBrothers/cookbook-ignite.git",
+        "revision": "430fe0ddc9c460cb559c073ee7270d5f7c3a12fc",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "weaveworks-ignite",
+        ">= 0.0.0"
+      ]
+    ],
+    "dependencies": {
+      "weaveworks-ignite (0.1.0)": [
+
+      ]
+    }
+  }
+}
