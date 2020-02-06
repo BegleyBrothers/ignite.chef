@@ -12,8 +12,8 @@ name 'weaveworks-ignite'
 # Where to find external cookbooks:
 default_source :supermarket
 
-# run_list: chef-client will run these recipes in the order specified.
-run_list 'weaveworks-ignite::default'
-
 # Specify a custom source for a single cookbook:
 cookbook 'weaveworks-ignite', path: '.'
+
+# run_list: chef-client will run these recipes in the order specified.
+run_list 'weaveworks-ignite::default'

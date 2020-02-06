@@ -1,27 +1,24 @@
 --- 
 driver: 
-  name: dokken
   chef_version: "13.11.3"
-  privileged: true # Because Docker and SystemD/Upstart
+  name: docker
   pull_platform_image: false
 platforms: 
   - 
     driver: 
-      image: dokken/ubuntu-18.04
+      image: ubuntu:18.04
       pid_one_command: /bin/systemd
       privileged: true
     name: ubuntu-18.04
   - 
     driver: 
-      image: dokken/ubuntu-19.10
+      image: ubuntu:19.10
       pid_one_command: /bin/systemd
       privileged: true
     name: ubuntu-19.10
 
 provisioner: 
-  name: dokken
-  chef_license: 'accept'
-
+  name: chef_zero
 suites: 
   - 
     attributes: ~
@@ -30,6 +27,6 @@ suites:
       inspec_tests: 
         - test/integration/default
 transport: 
-  name: dokken
+  name: ssh
 verifier: 
   name: inspec

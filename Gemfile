@@ -7,13 +7,15 @@
 
 source 'https://rubygems.org'
 
-gem 'chef'
-gem 'chef-cli'
-gem 'kitchen-inspec'
-gem 'inspec'
+# gem 'chef'
+
 gem 'rake'
 
 group :development do
+  # gem 'chef-cli'
+  gem 'chef-dk'
+  gem 'kitchen-inspec'
+  gem 'inspec'
   # lefthook related:
   gem 'lefthook'
   gem 'rubocop'
@@ -24,6 +26,8 @@ end
 
 group :integration do
   gem 'test-kitchen'
+  gem 'kitchen-local', :git => 'https://github.com/gengo/kitchen-local.git'
+  gem 'kitchen-docker'
 end
 
 group :dokken do

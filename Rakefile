@@ -56,7 +56,7 @@ namespace :integration do
   task :compile_policies do 
     rm Dir.glob('*.lock.json')
     policies.each do |policyfile|
-      sh 'chef-cli', 'install', policyfile
+      sh 'chef', 'install', policyfile
     end
   end
 

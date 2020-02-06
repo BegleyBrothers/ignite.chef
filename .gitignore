@@ -1,3 +1,9 @@
+# Note README.rb gets clobbered by chef install Policyfile.rb.
+# Never put anything in there.
+README.md
+cookbook_artifacts/
+nodes/
+
 .vagrant
 *~
 *#
