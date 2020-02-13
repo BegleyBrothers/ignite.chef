@@ -1,19 +1,13 @@
 # Ignite Changelog
 
-This file is used to list changes made in each version of the weaveworks-ignite cookbook.
-
-# 0.1.0 (2020-02-04)
-
-Initial release.
-
-- Add files for git-subrepo to treat cookbook as part of this repository.
+This file lists changes made in each version of the Ignite cookbook.
 
 ## Unreleased: 2020-02-13
 
 ### Added
 New features
 
-- Added install recipe for `ignite` and `ignited`, for platforms:
+- Add install recipe for `ignite` and `ignited`, for platforms:
   - `amazonlinux-2`
   - `debian-9`
   - `amazonlinux`
@@ -21,8 +15,7 @@ New features
   - `fedora-latest`
   - `ubuntu-16.04`
   - `ubuntu-18.04`
-
-- Added install recipe for `ignited` service, for platforms:
+- Add install recipe for `ignited` service, for platforms:
   - `amazonlinux-2`
   - `debian-9`
   - `amazonlinux`
@@ -30,10 +23,16 @@ New features
   - `fedora-latest`
   - `ubuntu-16.04`
   - `ubuntu-18.04`
-- Added spec unit tests.
-- Added Test-Kitchen integration tests.
-- Added LeftHook commit hooks
-- Added several code quality gems
+- Add service configuration templates for:
+  - `sytemd`
+  - `upstart`
+  - `sysvinit`
+  - `sysconfig`
+- Add spec unit tests.
+- Add Test-Kitchen integration tests.
+- Add LeftHook commit hooks
+- Add several code quality gems
+- Add Policyfiles for cookbook and integration tests
 
 ### Changed
 Changes in existing functionality.
@@ -65,3 +64,9 @@ Bug fixes.
 In case of vulnerabilities.
 
 - No security vulnerabilities to fix.
+
+# 0.1.0 (2020-02-04)
+
+Initial release.
+
+- Add files for git-subrepo to treat cookbook as part of this repository.
