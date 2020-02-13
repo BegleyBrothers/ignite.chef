@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache 2.0
 # Copyright:: 2020, Begley Brothers.
 #
 # Execute cleanup logic only if the container is stopped explicitly.

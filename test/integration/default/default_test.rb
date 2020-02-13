@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-2.0
 # Copyright:: 2020, Begley Brothers Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +35,6 @@ describe process('containerd') do
   it { should be_running }
 end
 
-# This is an example test, replace it with your own test.
 describe port(80), :skip do
   it { should_not be_listening }
 end
