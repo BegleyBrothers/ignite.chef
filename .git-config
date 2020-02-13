@@ -1,0 +1,10 @@
+[commit]
+	template = .git-message
+	gpgsign = true
+[tag]
+	gpgsign = true
+	forceSignAnnotated = true
+[user]
+	signingKey = 1E41631890835FC3
+[gpg]
+	program = /usr/bin/gpg
