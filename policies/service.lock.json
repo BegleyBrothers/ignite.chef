@@ -1,0 +1,219 @@
+{
+  "revision_id": "efa03b3a278e9267e684e67afbcd5ac28df16a13b365758fb215afa3c15a8d6a",
+  "name": "ignite_kitchen",
+  "run_list": [
+    "recipe[ignite_test::service]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "audit": {
+      "version": "9.0.1",
+      "identifier": "b06bd8d14e8bb33744ae0e48e6934683856ee52b",
+      "dotted_decimal_identifier": "49658174869769139.15556638073742995.77530693297451",
+      "cache_key": "audit-9.0.1-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/audit/versions/9.0.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/audit/versions/9.0.1/download",
+        "version": "9.0.1"
+      }
+    },
+    "chef-apt-docker": {
+      "version": "2.0.6",
+      "identifier": "84de3c8e6b44d9674a67236ac94ed71cfe73a306",
+      "dotted_decimal_identifier": "37399048594605273.29073729437485390.236519528047366",
+      "cache_key": "chef-apt-docker-2.0.6-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-apt-docker/versions/2.0.6/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-apt-docker/versions/2.0.6/download",
+        "version": "2.0.6"
+      }
+    },
+    "chef-yum-docker": {
+      "version": "3.1.1",
+      "identifier": "1cae313a109ba62ec6be72c93ae46af1e24c27d1",
+      "dotted_decimal_identifier": "8072825798695846.13166370200566500.117587116304337",
+      "cache_key": "chef-yum-docker-3.1.1-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-yum-docker/versions/3.1.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-yum-docker/versions/3.1.1/download",
+        "version": "3.1.1"
+      }
+    },
+    "docker": {
+      "version": "4.12.0",
+      "identifier": "9e1c0dfa3780f92f62ee1d189334b1b47c878c75",
+      "dotted_decimal_identifier": "44503892678377721.13338098735289140.195388741487733",
+      "cache_key": "docker-4.12.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/docker/versions/4.12.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/docker/versions/4.12.0/download",
+        "version": "4.12.0"
+      }
+    },
+    "etcd": {
+      "version": "5.6.0",
+      "identifier": "ea53c83aa530c0a8fecaef50e0f3c4eba8eba839",
+      "dotted_decimal_identifier": "65957263992762560.47567943639294195.216516430374969",
+      "cache_key": "etcd-5.6.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/etcd/versions/5.6.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/etcd/versions/5.6.0/download",
+        "version": "5.6.0"
+      }
+    },
+    "git": {
+      "version": "10.0.0",
+      "identifier": "16726d6f9285ca00f4abe4a895dc1a219ea6c4fa",
+      "dotted_decimal_identifier": "6318263836509642.269019112838620.28731697972474",
+      "cache_key": "git-10.0.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/git/versions/10.0.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/git/versions/10.0.0/download",
+        "version": "10.0.0"
+      }
+    },
+    "ignite": {
+      "version": "0.3.0",
+      "identifier": "7a8b9174068edaf4f9ba72f790c571b5d1d0277e",
+      "dotted_decimal_identifier": "34493403991805658.68954473505460421.125025723099006",
+      "source": "..",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "e0d708cd34d2cc8b6ff54e9a80d2dbc213a097c1",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": ".."
+      }
+    },
+    "ignite_test": {
+      "version": "0.1.0",
+      "identifier": "647bfb23dc7139b8d763895846a8cf71203a59b8",
+      "dotted_decimal_identifier": "28283816239722809.52028218220758696.228084778949048",
+      "source": "../test/cookbooks/ignite_test",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "e0d708cd34d2cc8b6ff54e9a80d2dbc213a097c1",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "../test/cookbooks/ignite_test"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "audit",
+        "= 9.0.1"
+      ],
+      [
+        "chef-apt-docker",
+        "= 2.0.6"
+      ],
+      [
+        "chef-yum-docker",
+        "= 3.1.1"
+      ],
+      [
+        "docker",
+        "= 4.12.0"
+      ],
+      [
+        "etcd",
+        "= 5.6.0"
+      ],
+      [
+        "git",
+        "= 10.0.0"
+      ],
+      [
+        "ignite",
+        ">= 0.0.0"
+      ],
+      [
+        "ignite_test",
+        "= 0.1.0"
+      ]
+    ],
+    "dependencies": {
+      "audit (9.0.1)": [
+
+      ],
+      "chef-apt-docker (2.0.6)": [
+
+      ],
+      "chef-yum-docker (3.1.1)": [
+
+      ],
+      "docker (4.12.0)": [
+
+      ],
+      "etcd (5.6.0)": [
+        [
+          "docker",
+          ">= 0.0.0"
+        ]
+      ],
+      "git (10.0.0)": [
+
+      ],
+      "ignite (0.3.0)": [
+        [
+          "audit",
+          ">= 0.0.0"
+        ],
+        [
+          "chef-apt-docker",
+          ">= 0.0.0"
+        ],
+        [
+          "chef-yum-docker",
+          ">= 0.0.0"
+        ],
+        [
+          "docker",
+          ">= 0.0.0"
+        ],
+        [
+          "git",
+          ">= 0.0.0"
+        ]
+      ],
+      "ignite_test (0.1.0)": [
+        [
+          "docker",
+          ">= 0.0.0"
+        ],
+        [
+          "etcd",
+          ">= 0.0.0"
+        ],
+        [
+          "ignite",
+          ">= 0.0.0"
+        ]
+      ]
+    }
+  }
+}
