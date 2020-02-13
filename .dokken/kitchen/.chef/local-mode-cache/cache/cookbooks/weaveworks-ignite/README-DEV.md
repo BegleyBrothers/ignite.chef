@@ -14,7 +14,7 @@ Running Test-Kitchen's Dokken tool-chain is currently blocked by this issue:
 A more productive path is likely to be via patching the [kitchen-local]()
 Transport gem - to fix this issue.
 
-For useful history/background (note kitchen-Docker is in worse shape wrt this 
+For useful history/background (note kitchen-Docker is in worse shape w.r.t. this 
 workflow): [Can You Run ChefDK and Kitchen-Docker inside of a docker container](https://hackernoon.com/can-you-run-chefdk-and-kitchen-docker-inside-of-a-docker-container-10c384571f34)
 
 ### Docker
