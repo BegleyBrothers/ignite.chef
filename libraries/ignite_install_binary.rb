@@ -62,8 +62,20 @@ module IgniteCookbook
     end
 
     action :uninstall do
+      # Force-remove all running VMs
+      execute 'ignite rm -f $(ignite ps -aq)'
+      # Remove the data directory
+      directory '/var/lib/firecracker' do
+        action :remove
+        recursive :true
+      end
+      # Remove the ignited binaries
       file ignite_bin do
         action :remove
+      end
+      docker_installation 'ignite' do
+        action :delete
+        only_if '[ ! -z `docker info` ]'
       end
     end
   end

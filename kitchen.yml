@@ -2,7 +2,7 @@
 # All the options for kitchen-vagrant enumerated and annotated
 # options are illustrated where they most commonly would be set
 driver:
-  name: vagrant # test-kitchen default
+  name: vagrant # test-kitchen default for developer desktop testing
 
   # If not set, check for the environment variable `VAGRANT_DEFAULT_PROVIDER`
   # If that is unset, default to `virtualbox`
@@ -101,42 +101,41 @@ provisioner:
   # Otherwise for platforms we don't know, the box needs to exist locally
   # and be known to Vagrant, otherwise provide `box` or `box_url`
   # - name: openbsd-5.6
-    # driver:
-      # Versioned boxes from Vagrant Cloud can be utilized
-      # `box_version` only works when `box` uses the Vagrant Cloud syntax
-      # box: organization/openbsd-56
-      # box_version: 1.2.3
-      # If not using Vagrant Cloud, the box can be fetched
-      # remotely via `http(s)://` or locally via `file://`
-      # `box` requires a value
-      # box: openbsd-5.6
-      # box_url: http://url.tld/openbsd-5.6.box
-
+  #
+  # Versioned boxes from Vagrant Cloud can be utilized
+  # `box_version` only works when `box` uses the Vagrant Cloud syntax
+  # box: organization/openbsd-56
+  # box_version: 1.2.3
+  # If not using Vagrant Cloud, the box can be fetched
+  # remotely via `http(s)://` or locally via `file://`
+  # `box` requires a value
+  # box: openbsd-5.6
+  # box_url: http://url.tld/openbsd-5.6.box
 platforms:
 - name: amazonlinux
   driver:
     cachier: box
-
 - name: amazonlinux-2
   driver:
     cachier: box
-
 - name: debian-9
   driver:
     cachier: box
-
 - name: centos-7
   driver:
     cachier: box
-
 - name: fedora-latest
   driver:
     cachier: box
-
 - name: ubuntu-16.04
   driver:
     cachier: box
+- name: ubuntu-18.04
+  driver:
+    cachier: box
 
+# The DigitalOcean platforms are to allow integration tests outside a 
+# developer's desktop.  Since this costs
 - name: ubuntu-18
   driver:
     name: digitalocean
@@ -191,6 +190,13 @@ suites:
         uri: 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64'
     provisioner:
         policyfile: policies/service.rb
+
+  - name: inspec
+    provisioner:
+      policyfile: policies/inspec.rb
+    verifier:
+      inspec_tests:
+        - inspec
 
   - name: installation_script_test
     includes: [

@@ -42,7 +42,8 @@ module IgniteCookbook
         EOH
         not_if { ::File.exist?('/opt/cni/bin/bridge') }
       end
-
+      # Ignite installs default to using containerd & CNI rather than docker
+      # Eventually this docker install must be removed from this resource.
       docker_installation_package 'ignite' do
         version node['docker']['version'] if node['docker'] && !node['docker']['version'].nil?
         action :create
@@ -60,18 +61,22 @@ module IgniteCookbook
     end
 
     action :uninstall do
-      # Force-remove all running VMs
-      execute 'ignite rm -f $(ignite ps -aq)'
+      # Force-remove all running VMs only if ignite is installed.
+      execute 'ignite rm -f $(ignite ps -aq)' do
+        only_if { ::File.exist(ignite_bin) }
+      end
       # Remove the data directory
       directory '/var/lib/firecracker' do
         action :remove
+        recursive :true
       end
       # Remove the ignited binaries
       file ignited_bin do
         action :remove
       end
-      docker_installation 'ignited' do
+      docker_installation 'ignite' do
         action :delete
+        only_if '[ ! -z `docker info` ]'
       end
     end
   end

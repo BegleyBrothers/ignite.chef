@@ -33,9 +33,5 @@ module IgniteCookbook
       include ::IgniteCookbook::IgniteHelpers::Inspec
     end
 
-    # audit_settings(node)
-    # # Execute the community audit cookbook with the collector set
-    # include_recipe 'audit::default'
-
   end unless defined?(IgniteCookbook::IgniteInspecBase)
 end
