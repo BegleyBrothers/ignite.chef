@@ -9,13 +9,20 @@
 #
 
 [local_phases]
+provision = "echo skipping"
+deploy = "echo skipping"
+smoke = "echo skipping"
+functional = "echo skipping"
+cleanup = "echo skipping"
+
+[local_phases]
 unit = "chef exec rspec spec/"
-lint = "chef exec cookstyle"
+lint = "chef exec cookstyle --display-cop-names --extra-details"
 # Foodcritic includes rules only appropriate for community cookbooks
 # uploaded to Supermarket. We turn off any rules tagged "supermarket"
 # by default. If you plan to share this cookbook you should remove
 # '-t ~supermarket' below to enable supermarket rules.
-syntax = "chef exec foodcritic . -t ~supermarket"
+syntax = "echo syntax checking with foodcritic has been replaced with cookstyle. skipping"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"

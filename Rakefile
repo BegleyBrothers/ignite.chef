@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache 2.0
 # Copyright:: 2020, Begley Brothers.
 #
 # Available Rake tasks:
@@ -13,7 +13,46 @@
 # More info at https://github.com/ruby/rake/blob/master/doc/rakefile.rdoc
 #
 
+# For CircleCI
 require 'bundler/setup'
+
+# Style tests. Rubocop and CookStyle
+namespace :style do
+  require 'cookstyle'
+  require 'rubocop/rake_task'
+  desc 'RuboCop'
+  RuboCop::RakeTask.new(:ruby) do |task|
+    task.patterns = ['attributes/**/*.rb',
+                     'libraries/**/*.rb',
+                     'policies/**/*.rb',
+                     'recipes/**/*.rb',
+                     'spec/**/*.rb',
+                     'test/integration/**/*.rb']
+    task.options << "--display-cop-names"
+  end
+end
+
+# Rspec and ChefSpec
+namespace :unit do
+  desc 'Unit Tests (Rspec & ChefSpec)'
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:rspec)
+
+  desc 'Unit Tests for CircleCI'
+  RSpec::Core::RakeTask.new(:circleci_rspec) do |test|
+    # t.fail_on_error = false
+    test.rspec_opts = '--no-drb -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml'
+  end
+end
+
+desc 'Circle CI Tasks'
+task circleci: %w(style:ruby unit:circleci_rspec integration:dokken)
+
+desc 'Rubocop, CookStyle & ChefSpec'
+task default: %w(style:ruby unit:rspec)
+
+desc 'Rubocop & CookStyle'
+task style_only: %w(style:ruby)
 
 desc 'Run Test Kitchen integration tests'
 namespace :integration do

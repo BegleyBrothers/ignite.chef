@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache 2.0
 # Copyright:: 2020, Begley Brothers.
 #
 FROM ubuntu:18.04
@@ -11,9 +11,9 @@ RUN apt-get update \
         curl \
         docker.io \
         iproute2 \
-        net-tools \
         libgit2-dev \
         locales \
+        net-tools \
         vim
     
 # Match user on the host:

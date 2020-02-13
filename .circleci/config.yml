@@ -1,0 +1,38 @@
+# Ruby CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.0/ruby/ for more details
+#
+version: 2.1 
+
+
+orbs:
+  ruby: circleci/ruby@0.1.2 # Ruby orb registry: https://circleci.com/orbs/registry/orb/circleci/ruby
+    version: 2.5.5
+
+dependencies:
+  override:
+  - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3:
+      timeout: 900
+
+test:
+  override:
+  - bundle exec rake circleci:
+      parallel: false
+      timeout: 900
+
+jobs: 
+  build: 
+    docker:
+      - image: circleci/ruby:2.5.5-stretch-node
+    steps: 
+      - checkout
+      - run: 
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
+
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=C4NKeu2eEgZg3LwZsaipTK8e0KDRivHJU
+# What to do next? Set up a test job. Please see 
+# https://circleci.com/docs/2.0/configuration-reference/, for more  info on how to get started.

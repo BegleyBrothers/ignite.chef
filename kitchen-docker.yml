@@ -2,8 +2,14 @@
 driver: 
   chef_version: "13.11.3"
   name: docker
-  pull_platform_image: false
+
 platforms: 
+  - 
+    driver: 
+      image: docker:dind
+      pid_one_command: /bin/systemd
+      privileged: true
+    name: dind
   - 
     driver: 
       image: ubuntu:18.04
@@ -17,16 +23,41 @@ platforms:
       privileged: true
     name: ubuntu-19.10
 
-provisioner: 
+provisioner:
   name: chef_zero
-suites: 
-  - 
-    attributes: ~
-    name: default
-    verifier: 
-      inspec_tests: 
-        - test/integration/default
+  always_update_cookbooks: true
+  client_rb:
+    chef_license: accept
+
+suites:
+
+###############################
+# ignite_installation resources
+###############################
+- name: installation_ignite
+  includes: [
+    'ubuntu-18.04',
+    'ubuntu-19.10'
+   ]
+  attributes:
+    docker:
+      uri: 'ignt://weaveworks/?file=ignite&version=0.6.3#amd64'
+  provisioner:
+      policyfile: policies/installation_ignite.rb
+
+- name: installation_ignited
+  includes: [
+    'ubuntu-18.04',
+    'ubuntu-19.10'
+   ]
+  attributes:
+    docker:
+      uri: 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64'
+  provisioner:
+      policyfile: policies/installation_ignited.rb
+
 transport: 
   name: ssh
+
 verifier: 
   name: inspec
