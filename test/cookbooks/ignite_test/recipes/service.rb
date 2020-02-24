@@ -12,3 +12,13 @@ ignite_service 'ignited2' do
   service_manager 'systemd'
   action [:create, :start]
 end
+
+# Stop the service then delete ....
+ignite_service 'ignited2' do
+  action [:stop, :delete]
+end
+
+#... is the same as delete the service alone.
+ignite_service 'ignited' do
+  action [:delete]
+end

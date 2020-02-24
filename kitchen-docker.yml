@@ -57,7 +57,7 @@ suites:
       policyfile: policies/installation_ignited.rb
 
 transport: 
-  name: ssh
+  name: speedy_ssh
 
 verifier: 
   name: inspec

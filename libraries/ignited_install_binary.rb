@@ -15,6 +15,9 @@ module IgniteCookbook
               default: lazy { default_uri },
               desired_state: false,
               description: 'Constrain URL construction to Ignite URIs.'
+    property  :install_docker, [true, false], 
+              default: false,
+              description: 'Install Docker service. Warning: Docker support is deprecated, and will be removed in a future release.'
 
     default_action :install
 
@@ -31,8 +34,9 @@ module IgniteCookbook
     end
 
     action :install do
-      setup_docker_repo
-
+      setup_docker if new_resource.install_docker
+      setup_packages
+      
       bash 'Install CNI plugins' do
         code <<-EOH
         CNI_VERSION=v0.8.2
@@ -42,13 +46,7 @@ module IgniteCookbook
         EOH
         not_if { ::File.exist?('/opt/cni/bin/bridge') }
       end
-      # Ignite installs default to using containerd & CNI rather than docker
-      # Eventually this docker install must be removed from this resource.
-      docker_installation_package 'ignite' do
-        version node['docker']['version'] if node['docker'] && !node['docker']['version'].nil?
-        action :create
-        not_if '[ ! -z `docker info` ]'
-      end
+
       # some other stuff here
       ignt_file = remote_file ignited_bin do
         source build_ignite_url(ignite_uri)
@@ -63,16 +61,16 @@ module IgniteCookbook
     action :uninstall do
       # Force-remove all running VMs only if ignite is installed.
       execute 'ignite rm -f $(ignite ps -aq)' do
-        only_if { ::File.exist(ignite_bin) }
+        only_if { ::File.exist?(ignite_bin) }
       end
       # Remove the data directory
       directory '/var/lib/firecracker' do
-        action :remove
-        recursive :true
+        action :delete
+        recursive true
       end
       # Remove the ignited binaries
       file ignited_bin do
-        action :remove
+        action :delete
       end
       docker_installation 'ignite' do
         action :delete

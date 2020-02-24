@@ -1,8 +1,8 @@
 {
-  "revision_id": "87710fec7d7ff0a05c249d85e90d0f241eca468ad098306d4455cca3a20357ad",
+  "revision_id": "da9324ba5b5c4c996a55bbf5ee9d0311d7e3df4362cb5f747a7993f6651169ec",
   "name": "ignite_kitchen",
   "run_list": [
-    "recipe[ignite_test::service]"
+    "recipe[ignite_test::inspec]"
   ],
   "included_policy_locks": [
 
@@ -76,8 +76,8 @@
     },
     "ignite": {
       "version": "0.3.0",
-      "identifier": "6745b1f69f04d31328225bcfa015e7fe672c9f86",
-      "dotted_decimal_identifier": "29068553250342099.5392152591835157.255079838687110",
+      "identifier": "39219e8b423cde8379664a8bf7d6a52d4d83639f",
+      "dotted_decimal_identifier": "16081038497430750.37006702193407958.181613992567711",
       "source": "..",
       "cache_key": null,
       "scm_info": {
@@ -96,8 +96,8 @@
     },
     "ignite_test": {
       "version": "0.1.0",
-      "identifier": "1b179b425d88b9dcdd030693e27df12cd1ed2798",
-      "dotted_decimal_identifier": "7625779971983545.62167499941339773.265174802835352",
+      "identifier": "5eec799149d04d6a89da581c16699244ca0f2d6b",
+      "dotted_decimal_identifier": "26718654683533389.29987918405441129.160824145423723",
       "source": "../test/cookbooks/ignite_test",
       "cache_key": null,
       "scm_info": {

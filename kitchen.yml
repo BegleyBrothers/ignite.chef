@@ -140,6 +140,8 @@ platforms:
   driver:
     name: digitalocean
     private_networking: false
+    ssh_key: ~/.ssh/id_rsa
+    ssh_key_only: true
   driver_config:
     region: nyc1
     size: 2gb
@@ -154,13 +156,18 @@ platforms:
 verifier:
   name: inspec
 
+transport:
+  name: speedy_ssh
+  ssh_key: ~/.ssh/id_rsa
+  username: vagrant
+
 suites:
   ###############################
   # ignite_installation resources
   ###############################
   - name: installation_ignite
     includes: [
-      'ubuntu-16.04',
+      #'ubuntu-16.04',
       'ubuntu-18'
     ]
     attributes:
@@ -171,7 +178,7 @@ suites:
 
   - name: installation_ignited
     includes: [
-      'ubuntu-16.04',
+      #'ubuntu-16.04',
       'ubuntu-18'
     ]
     attributes:
@@ -182,7 +189,7 @@ suites:
 
   - name: service
     includes: [
-      'ubuntu-16.04',
+      #'ubuntu-16.04',
       'ubuntu-18'
     ]
     attributes:
@@ -191,7 +198,22 @@ suites:
     provisioner:
         policyfile: policies/service.rb
 
+  - name: smoke
+    includes: [
+      #'ubuntu-16.04',
+      'ubuntu-18'
+    ]
+    attributes:
+      ignite:
+        uri: 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64'
+    provisioner:
+        policyfile: policies/smoke.rb
+
   - name: inspec
+    includes: [
+      #'ubuntu-16.04',
+      'ubuntu-18'
+    ]
     provisioner:
       policyfile: policies/inspec.rb
     verifier:

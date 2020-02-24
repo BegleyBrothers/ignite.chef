@@ -29,6 +29,8 @@ module IgniteCookbook
     property :version, String, desired_state: false
     property :package_options, String, desired_state: false
 
+    default_action :create
+
     ################
     # Helper Methods
     ################
@@ -55,7 +57,7 @@ module IgniteCookbook
       def installation(&block)
         case new_resource.install_method
         when 'auto'
-          install = ignite_installation(new_resource.name, &block)
+          install = ignited_installation_binary(new_resource.name, &block)
         when 'script'
           install = ignite_installation_script(new_resource.name, &block)
         when 'package'
@@ -99,13 +101,27 @@ module IgniteCookbook
 
       installation do
         action :install
-        notifies :restart, new_resource, :immediately
+        notifies :enable, new_resource, :immediately
+      end
+
+      svc_manager do
+        action :restart
       end
     end
 
     action :delete do
+      svc_manager do
+        action :stop
+      end
+
       installation do
-        action :delete
+        action :uninstall
+      end
+    end
+
+    action :enable do
+      svc_manager do
+        action :enable
       end
     end
 

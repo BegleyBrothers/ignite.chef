@@ -19,7 +19,7 @@ Requires=<%= @ignite_name %>.socket
 <% end %>
 
 [Service]
-Type=notify
+Type=simple
 <% if @config.http_proxy %>
 Environment="HTTP_PROXY=<%= @config.http_proxy %>"
 <% end %>

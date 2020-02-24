@@ -1,0 +1,11 @@
+apiVersion: ignite.weave.works/v1alpha2
+kind: VM
+metadata:
+  name: smoke-test
+  uid: <%= uuid %>
+spec:
+  image:
+    oci: weaveworks/ignite-ubuntu
+  cpus: 1
+  diskSize: 1230MB
+  memory: 456MB

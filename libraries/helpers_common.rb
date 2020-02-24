@@ -58,7 +58,6 @@ module IgniteCookbook
         return 'ignited' if new_resource.name == 'default'
         "ignite-#{new_resource.name}"
       end
-
     end unless defined?(::IgniteCookbook::IgniteHelpers::Common)
   end
 end

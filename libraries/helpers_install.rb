@@ -11,6 +11,11 @@ module ::IgniteCookbook
       # Action helper methods
       #########################
 
+      def setup_docker
+        setup_docker_repo
+        setup_docker_package
+      end
+
       def setup_docker_repo
         case node['platform_family']
         when 'rhel','fedora'
@@ -20,6 +25,40 @@ module ::IgniteCookbook
           include_recipe 'chef-apt-docker'
         end
       end
+
+      def setup_docker_package
+        # Ignite installs default to using containerd & CNI rather than docker
+        # Eventually this docker install must be removed from this resource.
+        docker_installation_package 'ignite' do
+          version node['docker']['version'] if node['docker'] && !node['docker']['version'].nil?
+          action :create
+          not_if '[ ! -z $(docker info) ]'
+        end
+      end
+      def setup_packages
+        case node['platform_family']
+        when 'rhel','fedora'
+          setup_rhel_packages
+        when 'debian','ubuntu'
+          setup_debian_packages
+        end
+      end
+
+      def setup_debian_packages
+        apt_update 'update'
+        package %w(binutils dmsetup git openssh-client)
+        package 'containerd' do
+          not_if { node['packages'].keys.include? 'containerd' }
+        end
+      end
+
+      def setup_rhel_packages
+        package %w(e2fsprogs openssh-clients git)
+        package 'containerd.io' do
+          not_if { node['packages'].keys.include? 'containerd.io' }
+        end
+      end
+
       # given a Ignite URI return a Ignite URL (https) for new_resource.filename.
       # @param [String] uri the Ignite file to be installed.
       #

@@ -2,6 +2,8 @@ module IgniteCookbook
   class IgniteServiceManagerSystemd < IgniteServiceBase
     resource_name :ignite_service_manager_systemd
 
+    default_action :start
+
     provides :ignite_service_manager, os: 'linux' do |_node|
       Chef::Platform::ServiceHelpers.service_resource_providers.include?(:systemd)
     end

@@ -11,8 +11,13 @@ module IgniteCookbook
 
     provides :ignite_installation_binary, os: 'linux'
 
-    property :uri, String, default: lazy { default_uri }, desired_state: false,
-             description: 'Constrain URL construction to Ignite URIs. Example: ignt://weaveworks/?file=ignite&version=0.6.3#amd64'
+    property  :uri, String,
+              default: lazy { default_uri },
+              desired_state: false,
+              description: 'Constrain URL construction to Ignite URIs.'
+    property  :install_docker, [true, false],
+              default: false,
+              description: 'Install Docker service. Warning: Docker support is deprecated, and will be removed in a future release.'
 
     default_action :install
 
@@ -33,8 +38,8 @@ module IgniteCookbook
     end
 
     action :install do
-      setup_docker_repo
-       
+      setup_docker if new_resource.install_docker
+
       bash 'Install CNI plugins' do
         code <<-EOH
         CNI_VERSION=v0.8.2
@@ -45,20 +50,11 @@ module IgniteCookbook
         not_if { ::File.exist?('/opt/cni/bin/bridge') }
       end
 
-      docker_installation_package 'ignite' do
-        version '19.03.5'
-        action :create
-        not_if '[ ! -z `docker info` ]'
-      end
-      # some other stuff here
       ignt_file = remote_file ignite_bin do
         source build_ignite_url(ignite_uri)
         mode '00755'
         action :create
-        # notifies [:create, :start], "ignite_service[#{ignite_name}]", :immediately
       end
-      # ignt_file.run_action(:create)
-      # new_resource.updated_by_last_action(true) if ignt_file.updated_by_last_action?
     end
 
     action :uninstall do
@@ -66,12 +62,12 @@ module IgniteCookbook
       execute 'ignite rm -f $(ignite ps -aq)'
       # Remove the data directory
       directory '/var/lib/firecracker' do
-        action :remove
-        recursive :true
+        action :delete
+        recursive true
       end
-      # Remove the ignited binaries
+      # Remove the ignite binaries
       file ignite_bin do
-        action :remove
+        action :delete
       end
       docker_installation 'ignite' do
         action :delete

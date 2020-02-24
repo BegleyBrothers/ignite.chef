@@ -19,7 +19,7 @@ Requires=<%= @ignite_name %>.socket
 <% end %>
 
 [Service]
-Type=notify
+Type=simple
 # the default is not to use systemd for cgroups because the delegate issues still
 # exists and systemd currently does not support the cgroup feature set required
 # for micro-vm run by Ignite (Firecracker)
