@@ -1,5 +1,8 @@
 [branch]
   autosetupmerge = true
+[branch "develop"]
+	remote = origin
+	merge = refs/heads/develop
 [commit]
   gpgsign = true
 	template = .git-message
@@ -7,9 +10,10 @@
 	helper = cache --timeout=3600
 [gpg]
 	program = signify-notes
-[tag]
-	gpgsign = true
-	forceSignAnnotated = true
 [remote "upstream"]
 	url = https://github.com/BegleyBrothers/cookbook-ignite.git
 	fetch = +refs/heads/*:refs/remotes/upstream/*
+[tag]
+	gpgsign = true
+	forceSignAnnotated = true
+
