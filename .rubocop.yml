@@ -3,6 +3,11 @@
 #   - rubocop-rspec
 #   - rubocop-performance
 
+Layout/AlignHash:
+  Enabled: true
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
 # AllCops:
 #   EnabledByDefault: true
 #   TargetRubyVersion: 2.5.5

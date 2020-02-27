@@ -7,6 +7,9 @@ This file lists changes made in each version of the Ignite cookbook.
 ### Added
 New features
 
+- Add Inspec controls for:
+  - Kernel module
+  - Environment variables
 - Add install recipe for `ignite` and `ignited`, for platforms:
   - `amazonlinux-2`
   - `debian-9`

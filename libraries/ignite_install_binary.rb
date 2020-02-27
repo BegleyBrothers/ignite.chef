@@ -12,17 +12,17 @@ module IgniteCookbook
     provides :ignite_installation_binary, os: 'linux'
 
     property  :uri, String,
-              default: lazy { default_uri },
+              default:       lazy { default_uri },
               desired_state: false,
-              description: 'Constrain URL construction to Ignite URIs.'
+              description:   'Constrain URL construction to Ignite URIs.'
     property  :install_docker, [true, false],
-              default: false,
+              default:     false,
               description: 'Install Docker service. Warning: Docker support is deprecated, and will be removed in a future release.'
     property  :serio_i8042, String,
-              default: 'y',
+              default:     'y',
               description: 'Serial IO device. Optional but recommended.'
     property  :keyboard_atkbd, String,
-              default: 'y',
+              default:     'y',
               description: 'Keyboard device. Optional but recommended.'
 
     default_action :install
@@ -56,7 +56,7 @@ module IgniteCookbook
         not_if { ::File.exist?('/opt/cni/bin/bridge') }
       end
 
-      ignt_file = remote_file ignite_bin do
+      remote_file ignite_bin do
         source build_ignite_url(ignite_uri)
         mode '00755'
         action :create

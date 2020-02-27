@@ -47,11 +47,11 @@ module IgniteCookbook
           group 'root'
           mode '0755'
           variables(
-            ignite_name: ignite_name,
-            ignited_bin_link: ignited_bin_link,
-            ignite_daemon_arg: ignite_daemon_arg,
+            ignite_name:        ignite_name,
+            ignited_bin_link:   ignited_bin_link,
+            ignite_daemon_arg:  ignite_daemon_arg,
             ignite_daemon_opts: ignite_daemon_opts.join(' '),
-            ignite_wait_ready: "#{libexec_dir}/#{ignite_name}-wait-ready"
+            ignite_wait_ready:  "#{libexec_dir}/#{ignite_name}-wait-ready"
           )
           action :create
         end

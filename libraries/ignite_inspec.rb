@@ -50,7 +50,6 @@ module IgniteCookbook
     end
 
     action_class.class_eval do
-
     end
 
     #########
@@ -61,7 +60,6 @@ module IgniteCookbook
       audit_settings(node)
 
       include_recipe 'audit::default'
-
     end
 
     action :delete do

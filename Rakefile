@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# SPDX-License-Identifier: Apache 2.0
+# SPDX-License-Identifier: MIT
 # Copyright:: 2020, Begley Brothers.
 #
 # Available Rake tasks:
@@ -28,7 +28,8 @@ namespace :style do
                      'recipes/**/*.rb',
                      'spec/**/*.rb',
                      'test/integration/**/*.rb']
-    task.options << "--display-cop-names"
+    task.options << '--auto-correct'
+    task.options << '--display-cop-names'
   end
 end
 
@@ -46,7 +47,9 @@ namespace :unit do
 end
 
 desc 'Circle CI Tasks'
-task circleci: %w(style:ruby unit:circleci_rspec integration:dokken)
+# Digital ocean tests are costly
+# task circleci: %w(style:ruby unit:circleci_rspec integration:digitalocean)
+task circleci: %w(style:ruby unit:circleci_rspec)
 
 desc 'Rubocop, CookStyle & ChefSpec'
 task default: %w(style:ruby unit:rspec)
@@ -99,10 +102,10 @@ namespace :integration do
     end
   end
 
-  desc 'Run integration tests with kitchen-dokken'
-  task :dokken, [:regexp, :action] => [:compile_policies] do |_t, args|
-    run_kitchen(args.action, args.regexp, local_config: '.kitchen.dokken.yml')
+  desc 'Run integration tests with kitchen-digitalocean'
+  task :digitalocean, [:action, :regexp] => [:compile_policies] do |_t, args|
+    run_kitchen(args.action, args.regexp, local_config: '.kitchen.yml')
   end
 end
 
-task default: %w[integration:dokken]
+task default: %w[integration:digitalocean]

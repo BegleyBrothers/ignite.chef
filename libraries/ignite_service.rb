@@ -12,7 +12,7 @@ module IgniteCookbook
     property :service_manager, %w(execute sysvinit upstart systemd auto), default: 'auto', desired_state: false
 
     # ignited_installation_binary
-    property :uri, String, default: lazy{ default_uri }, desired_state: false
+    property :uri, String, default: lazy { default_uri }, desired_state: false
     property :ignited_bin, String, desired_state: false
 
     # ignite_installation_tarball

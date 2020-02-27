@@ -1,8 +1,8 @@
 {
-  "revision_id": "583c18aa9843449aaf13b86770973bf7a2b1a0319a57b02004222f4246ac10fe",
+  "revision_id": "bbfc6a6ae55b6a3ccc81b9a7ec9fb0c31ba97d0dd5ea53af3d67fe862a07dea9",
   "name": "ignite_kitchen",
   "run_list": [
-    "recipe[ignite_test::smoke]"
+    "recipe[ignite_test::installation_ignited]"
   ],
   "included_policy_locks": [
 
@@ -65,8 +65,8 @@
     },
     "ignite": {
       "version": "0.5.0",
-      "identifier": "926b931df22801ab6ef34dfef73665fdd2fbfa36",
-      "dotted_decimal_identifier": "41213626206529537.48254212282185526.112140840860214",
+      "identifier": "dd211a602b753dac3d57b1049fb7ae608517de52",
+      "dotted_decimal_identifier": "62242367019382077.48481142835552183.191729573027410",
       "source": "..",
       "cache_key": null,
       "scm_info": {

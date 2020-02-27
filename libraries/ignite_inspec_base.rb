@@ -32,6 +32,5 @@ module IgniteCookbook
     action_class do
       include ::IgniteCookbook::IgniteHelpers::Inspec
     end
-
   end unless defined?(IgniteCookbook::IgniteInspecBase)
 end

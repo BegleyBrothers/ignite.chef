@@ -91,7 +91,7 @@ module IgniteCookbook
           new_resource.source,
           {
             'nocache' => new_resource.nocache,
-            'rm' => new_resource.rm,
+            'rm'      => new_resource.rm,
           },
           connection
         )
@@ -103,7 +103,7 @@ module IgniteCookbook
           IO.read(new_resource.source),
           {
             'nocache' => new_resource.nocache,
-            'rm' => new_resource.rm,
+            'rm'      => new_resource.rm,
           },
           connection
         )
@@ -115,7 +115,7 @@ module IgniteCookbook
           ::File.open(new_resource.source, 'r'),
           {
             'nocache' => new_resource.nocache,
-            'rm' => new_resource.rm,
+            'rm'      => new_resource.rm,
           },
           connection
         )

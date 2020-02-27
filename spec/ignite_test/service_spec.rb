@@ -9,8 +9,8 @@ describe 'ignite_test::service' do
   end
 
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu',
-                             version: '18.04',
+    ChefSpec::SoloRunner.new(platform:  'ubuntu',
+                             version:   '18.04',
                              step_into: %w(helpers_service ignite_service ignite_service_base ignite_service_manager ignite_service_manager_systemd)).converge(described_recipe)
   end
 

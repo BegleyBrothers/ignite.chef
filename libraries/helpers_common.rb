@@ -13,7 +13,7 @@ module IgniteCookbook
       # @return [URI::Ignt] is the URI of the Ignite binary file
       def parse_ignite_uri
         uri = URI(new_resource.uri)
-        if is_ignite_uri?(uri)
+        if ignite_uri?(uri)
           uri
         else
           raise "Expected #{new_resource.uri} to have scheme ignt.  Example: ignt://weaveworks/?0.6.3#amd64"

@@ -1,10 +1,11 @@
 # Cookbook TESTING doc
 
-This document describes the process for testing using Dokken.
+This document describes the process for testing using Test-Kitchen.
 
 ## Testing Prerequisites
 
-Ignite
+1. Ignite `>=0.6.3`
+1. ChefDK `>=14.3`
 
 ## Installing dependencies
 
@@ -24,57 +25,34 @@ Update any installed dependencies to the latest versions:
 chef exec bundle update
 ```
 
-## Local Delivery
+## Lint & Syntax stage
 
-For consistent testing developers we use the Delivery CLI tool and the local
-delivery mode.
-
-Delivery defines testing in phases.
-This cookbooks utilizes:
-
-1. `lint`
-1. `syntax`
-1. `unit`
-1. `provision`
-1. `deploy`
-1. `smoke`
-1. `cleanup`
-
-To run an individual phase:
-
-```shell
-delivery local unit
-```
-
-To run all phases:
-
-```shell
-delivery local all
-```
-
-### Lint & Syntax stage
-
-The lint stage runs Ruby specific code linting using [Cookstyle](<https://github.com/chef/cookstyle>). Cookstyle offers a tailored RuboCop configuration enabling / disabling rules to better meet the needs of cookbook authors.
-Cookstyle ensures that projects with multiple authors have consistent code styling.
+The lint checks run Ruby specific code linting using
+[Cookstyle](<https://github.com/chef/cookstyle>).
+Cookstyle offers a tailored RuboCop configuration enabling / disabling rules
+to better meet the needs of cookbook authors.
+Cookstyle ensures that projects with multiple authors have consistent code
+styling.
 
 ### Unit stage
 
-The unit stage runs unit testing with [ChefSpec](<http://sethvargo.github.io/chefspec/>). ChefSpec is an extension of Rspec, specially formulated for testing Chef cookbooks.
+The unit stage runs unit testing with [InSpec](https://github.com/inspec/kitchen-inspec). 
+InSpec is an extension of Rspec, specially formulated for testing Chef cookbooks.
 
-Chefspec compiles cookbook code and converges the run in memory, without
+InSpec compiles cookbook code and converges the run in memory, without
 actually executing the changes.
 The user can write various assertions based on what they expect to have
 happened during the Chef run.
-Chefspec is very fast, and so is useful for testing complex logic as you can
+InSpec is very fast, and so is useful for testing complex logic as you can
 easily converge a cookbook many times in different ways.
 
 ## Integration Testing
 
-Integration testing is performed by Test Kitchen - using Dokken containers.
-After a successful converge, tests are uploaded and ran out of band of Chef.
-Tests should be designed to ensure that a recipe has accomplished its goal.
+Integration testing is performed by Test Kitchen - using Cloud VMs.
+After a successful converge, InSpec tests are uploaded and ran out of band of Chef.
+Tests are be designed to ensure that a recipe has accomplished its goal.
 
-## Integration Testing using Vagrant
+### Kitchen
 
 Integration tests can be performed on a local workstation using either VirtualBox or VMWare as the virtualization hypervisor. To run tests against all available instances run:
 

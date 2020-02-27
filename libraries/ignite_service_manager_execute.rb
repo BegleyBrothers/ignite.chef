@@ -22,10 +22,10 @@ module IgniteCookbook
       # to manually fork it from the shell with &
       bash "start ignite #{name}" do
         code "#{ignite_daemon_cmd} >> #{logfile} 2>&1 &"
-        environment 'HTTP_PROXY' => http_proxy,
+        environment 'HTTP_PROXY'  => http_proxy,
                     'HTTPS_PROXY' => https_proxy,
-                    'NO_PROXY' => no_proxy,
-                    'TMPDIR' => tmpdir
+                    'NO_PROXY'    => no_proxy,
+                    'TMPDIR'      => tmpdir
         not_if "ps -ef | grep -v grep | grep #{Shellwords.escape(ignite_daemon_cmd)}"
         action :run
       end

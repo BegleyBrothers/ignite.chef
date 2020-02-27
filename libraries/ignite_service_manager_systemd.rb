@@ -19,7 +19,7 @@ module IgniteCookbook
         group 'root'
         mode '0644'
         variables(
-          config: new_resource,
+          config:      new_resource,
           ignite_name: ignite_name
         )
         not_if { ignite_name == 'default' && ::File.exist?('/lib/systemd/system/ignite.socket') }
@@ -33,7 +33,7 @@ module IgniteCookbook
         group 'root'
         mode '0644'
         variables(
-          ignite_name: ignite_name,
+          ignite_name:       ignite_name,
           ignite_daemon_cmd: ignite_daemon_cmd
         )
         not_if { ignite_name == 'default' && ::File.exist?('/lib/systemd/system/ignite.service') }
@@ -47,8 +47,8 @@ module IgniteCookbook
         group 'root'
         mode '0644'
         variables(
-          config: new_resource,
-          ignite_name: ignite_name,
+          config:              new_resource,
+          ignite_name:         ignite_name,
           systemd_socket_args: systemd_socket_args
         )
       end
@@ -61,12 +61,12 @@ module IgniteCookbook
         group 'root'
         mode '0644'
         variables(
-          config: new_resource,
-          ignite_name: ignite_name,
+          config:            new_resource,
+          ignite_name:       ignite_name,
           ignite_daemon_cmd: ignite_daemon_cmd,
-          systemd_args: systemd_args,
+          systemd_args:      systemd_args,
           ignite_wait_ready: "#{libexec_dir}/#{ignite_name}-wait-ready",
-          env_vars: new_resource.env_vars
+          env_vars:          new_resource.env_vars
         )
         notifies :run, 'execute[systemctl daemon-reload]', :immediately
         notifies :run, "execute[systemctl try-restart #{ignite_name}]", :immediately
@@ -108,6 +108,5 @@ module IgniteCookbook
       action_stop
       action_start
     end
-
   end
 end

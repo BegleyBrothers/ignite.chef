@@ -27,19 +27,19 @@ module ::IgniteCookbook
       end
 
       def setup_host_environment_variables
-        append_if_no_line "Set CONFIG_VIRTIO_BLK" do
+        append_if_no_line 'Set CONFIG_VIRTIO_BLK' do
           path '/etc/environment'
           line 'export CONFIG_VIRTIO_BLK=y'
         end
-        append_if_no_line "Set CONFIG_VIRTIO_NET" do
+        append_if_no_line 'Set CONFIG_VIRTIO_NET' do
           path '/etc/environment'
           line 'export CONFIG_VIRTIO_NET=y'
         end
-        append_if_no_line "Set CONFIG_KEYBOARD_ATKBD" do
+        append_if_no_line 'Set CONFIG_KEYBOARD_ATKBD' do
           path '/etc/environment'
           line "export CONFIG_KEYBOARD_ATKBD=#{new_resource.keyboard_atkbd}"
         end
-        append_if_no_line "Set CONFIG_SERIO_I8042" do
+        append_if_no_line 'Set CONFIG_SERIO_I8042' do
           path '/etc/environment'
           line "export CONFIG_SERIO_I8042=#{new_resource.serio_i8042}"
         end
@@ -69,7 +69,7 @@ module ::IgniteCookbook
       end
 
       # Mimic docker per Slack converstion:
-      #https://weave-community.slack.com/archives/CL1A4S5UJ/p1580745314038700
+      # https://weave-community.slack.com/archives/CL1A4S5UJ/p1580745314038700
       def mimic_docker
         file '/usr/bin/docker' do
           content 'echo mimic-docker'
@@ -82,10 +82,9 @@ module ::IgniteCookbook
 
       def setup_docker_repo
         case node['platform_family']
-        when 'rhel','fedora'
+        when 'rhel', 'fedora'
           include_recipe 'chef-yum-docker'
-        when 'arch'
-        when 'debian','ubuntu'
+        when 'debian', 'ubuntu'
           include_recipe 'chef-apt-docker'
         end
       end
@@ -102,9 +101,9 @@ module ::IgniteCookbook
 
       def setup_packages
         case node['platform_family']
-        when 'rhel','fedora'
+        when 'rhel', 'fedora'
           setup_rhel_packages
-        when 'debian','ubuntu'
+        when 'debian', 'ubuntu'
           setup_debian_packages
         end
       end
@@ -139,19 +138,19 @@ module ::IgniteCookbook
 
       def ignite_url_host(uri)
         case uri.host
-          when 'weaveworks'
-            'github.com'
-          else
-            uri.host
+        when 'weaveworks'
+          'github.com'
+        else
+          uri.host
         end
       end
 
       def ignite_url_path(uri)
         case uri.host
-          when 'weaveworks'
-            '/weaveworks/ignite/releases/download/'
-          else
-            uri.path
+        when 'weaveworks'
+          '/weaveworks/ignite/releases/download/'
+        else
+          uri.path
         end
       end
 
@@ -159,13 +158,14 @@ module ::IgniteCookbook
       # @param [String] url the url of the repository
       #
       # @return [Boolean] is the repo URL a PPA
-      def is_ignite_uri?(uri)
+      def ignite_uri?(uri)
         uri.scheme == 'ignt'
       end
 
       def architectures
-        ['amd64','arm64']
+        %w(amd64 arm64)
       end
+
       # determine the Ignite architecture:
       #  - "arch" property if defined
       #  - Ignite URI `fragment` value if "arch" not defined.
@@ -175,10 +175,10 @@ module ::IgniteCookbook
       def ignite_url_arch(uri)
         arch = uri.fragment
         case arch
-          when *architectures
-            arch
-          else
-            raise "Expected #{new_resource.uri} to have as fragment one of: amd64 or arm64"
+        when *architectures
+          arch
+        else
+          raise "Expected #{new_resource.uri} to have as fragment one of: amd64 or arm64"
         end
       end
     end

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'ignite_test::install_binary' do
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu',
-                             version: '18.04',
+    ChefSpec::SoloRunner.new(platform:  'ubuntu',
+                             version:   '18.04',
                              step_into: ['ignite_binary']).converge(described_recipe)
   end
 
@@ -28,15 +28,15 @@ describe 'ignite_test::install_binary' do
 
   context 'binary file names for Ubuntu 18.04' do
     cached(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'ubuntu',
-                               version: '18.04',
-                               step_into: ['ignite_binary']).converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform:  'ubuntu',
+                               version:   '18.04',
+                               step_into: ['ignite_binary'])
+                          .converge(described_recipe)
     end
 
     it 'resolves URI to ignite binary file URL.' do
       expect(chef_run).to create_remote_file('/usr/bin/ignite')
-         .with(source: 'https://github.com/weaveworks/ignite/releases/download/0.6.3/ignite-amd64')
+        .with(source: 'https://github.com/weaveworks/ignite/releases/download/0.6.3/ignite-amd64')
     end
-
   end
 end

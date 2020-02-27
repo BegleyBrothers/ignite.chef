@@ -26,12 +26,12 @@ module IgniteCookbook
     property :group, String, default: 'ignite'
     property :host, [String, Array], coerce: proc { |v| coerce_host(v) }, desired_state: false
     property :ip, [IPV4_ADDR, IPV6_ADDR, nil]
-    property :ip_forward, [TrueClass, FalseClass]
-    property :ipv4_forward, [TrueClass, FalseClass], default: true
-    property :ipv6_forward, [TrueClass, FalseClass], default: true
-    property :ip_masq, [TrueClass, FalseClass]
-    property :iptables, [TrueClass, FalseClass]
-    property :ipv6, [TrueClass, FalseClass]
+    property :ip_forward, [true, false]
+    property :ipv4_forward, [true, false], default: true
+    property :ipv6_forward, [true, false], default: true
+    property :ip_masq, [true, false]
+    property :iptables, [true, false]
+    property :ipv6, [true, false]
     property :log_level, %w(debug info warn error fatal), default: 'debug'
     property :mount_flags, String, description: 'Used for MountFlags in systemd Ignite service file.'
     property :network_plugin, %w(cni docker-bridge), default: 'cni'
@@ -86,8 +86,8 @@ module IgniteCookbook
           group 'root'
           mode '0755'
           variables(
-            ignite_cmd: ignite_cmd,
-            libexec_dir: libexec_dir,
+            ignite_cmd:      ignite_cmd,
+            libexec_dir:     libexec_dir,
             service_timeout: new_resource.service_timeout
           )
           cookbook 'ignite'

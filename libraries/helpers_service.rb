@@ -132,11 +132,7 @@ module IgniteCookbook
       end
 
       def ignite_daemon_arg
-        if Gem::Version.new(ignited_major_version) < Gem::Version.new('0.6')
-          'daemon'
-        else
-          'daemon'
-        end
+        'daemon'
       end
 
       def ignite_raw_logs_arg

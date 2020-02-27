@@ -23,9 +23,9 @@ module IgniteCookbook
         group 'root'
         mode '0644'
         variables(
-          ignite_daemon_cmd: [ignited_bin_link, ignite_daemon_arg, ignite_daemon_opts].join(' '),
+          ignite_daemon_cmd:   [ignited_bin_link, ignite_daemon_arg, ignite_daemon_opts].join(' '),
           ignite_raw_logs_arg: ignite_raw_logs_arg,
-          ignite_wait_ready: "#{libexec_dir}/#{ignite_name}-wait-ready",
+          ignite_wait_ready:   "#{libexec_dir}/#{ignite_name}-wait-ready"
         )
         notifies :stop, "service[#{ignite_name}]", :immediately
         notifies :start, "service[#{ignite_name}]", :immediately

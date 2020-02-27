@@ -34,10 +34,10 @@ describe kernel_parameter('net.bridge.bridge-nf-call-iptables') do
   its('value') { should eq 0 }
 end
 
-kernel_env_vars = %w[ CONFIG_VIRTIO_BLK
+kernel_env_vars = %w( CONFIG_VIRTIO_BLK
                       CONFIG_VIRTIO_NET
                       CONFIG_KEYBOARD_ATKBD
-                      CONFIG_SERIO_I8042 ]
+                      CONFIG_SERIO_I8042 )
 
 kernel_env_vars.each do |e|
   describe os_env(e, 'system') do
@@ -47,14 +47,14 @@ end
 
 describe command('ignite images') do
   its(:exit_status) { should eq 0 }
-  its(:stdout) { should match(/weaveworks\/ignite-ubuntu:latest/) }
+  its(:stdout) { should match(%r{weaveworks\/ignite-ubuntu:latest}) }
   its(:stdout) { should match(/226\.5 MB/) }
   its(:stdout) { should_not match(/alpine/) }
 end
 
 describe command('ignite ps --all') do
   its(:exit_status) { should eq 0 }
-  its(:stdout) { should match(/weaveworks\/ignite-kernel:4.19.47/) }
+  its(:stdout) { should match(%r{weaveworks\/ignite-kernel:4.19.47}) }
   its(:stdout) { should match(/rpfrdqxmffadvn6t/) }
   its(:stdout) { should match(/1\.2 GB/) }
   its(:stdout) { should match(/456\.0 MB/) }
@@ -62,6 +62,6 @@ end
 
 describe command('ignite images ls') do
   its(:exit_status) { should eq 0 }
-  its('stdout') { should match(/weaveworks\/ignite-ubuntu:latest/) }
-  its(:stdout) { should match(/226\.5 MB/) }
+  its('stdout') { should match(%r{weaveworks\/ignite-ubuntu:latest}) }
+  its(:stdout) { should match(/226MB/) }
 end
