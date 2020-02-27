@@ -8,7 +8,33 @@ Install Weaveworks [Ignite](https://ignite.readthedocs.io/en/stable/index.html).
 
 ## Development
 
-### NOTE NOTE NOTE
+Testing is done against cloud providers that support nested virtualization.
+Currently DigitalOcean is the default
+
+### Git
+
+```bash
+git config --local --add credential.helper store
+git config --local --add user.signingKey /home/<user>/.config/signify/<user.email>.sec
+git push
+```
+
+### Requirements: Ubuntu
+
+```bash
+bundle check --path=vendor/bundle || bundle install --deployment --clean --without production test --jobs=1 --retry=3
+bundle exec rake integration:dokken[ubuntu]
+```
+
+## CI/CD
+
+### CircleCI
+
+1. CircleCI config triggers `rake integration:docker[${TESTS[$CIRCLE_NODE_INDEX]}]`
+1. Rake task trigger Kitchen run in dokken
+1. Kitchen run trigger Chef-Zero configuration
+
+## Development Notes
 
 Running Test-Kitchen's Dokken tool-chain within Docker (DinD) is currently
 blocked by this issue:
@@ -36,26 +62,3 @@ docker run -it -v $DKSOCKVOL -v $DKCKBKVOL -v $DKRTVOL -u `id -u $USER`:`id -g $
 appuser@<hash>:/app$ CHEF_LICENSE="accept" chef exec bundle install --path vendor/bundle
 appuser@<hash>:/app$ CHEF_LICENSE="accept" chef exec bundle exec kitchen test all
 ```
-
-### Git
-
-```bash
-git config --local credential.helper store
-git push
-```
-
-### Requirements: Ubuntu
-
-
-```bash
-bundle check --path=vendor/bundle || bundle install --deployment --clean --without production test --jobs=1 --retry=3
-bundle exec rake integration:dokken[ubuntu]
-```
-
-## CI/CD
-
-### CircleCI
-
-1. CircleCI config triggers `rake integration:docker[${TESTS[$CIRCLE_NODE_INDEX]}]`
-1. Rake task trigger Kitchen run in dokken
-1. Kitchen run trigger Chef-Zero configuration

@@ -32,10 +32,10 @@ module IgniteCookbook
     property :ip_masq, [TrueClass, FalseClass]
     property :iptables, [TrueClass, FalseClass]
     property :ipv6, [TrueClass, FalseClass]
-    property :log_level, %w(debug info warn error fatal), default: 'info'
+    property :log_level, %w(debug info warn error fatal), default: 'debug'
     property :mount_flags, String, description: 'Used for MountFlags in systemd Ignite service file.'
     property :network_plugin, %w(cni docker-bridge), default: 'cni'
-    property :runtime, %w(docker containerd), default: 'containerd'
+    property :runtime, %w(containerd docker), default: 'containerd'
 
     # These are options specific to systemd configuration such as
     # LimitNOFILE or TasksMax that you may wannt to use to customize

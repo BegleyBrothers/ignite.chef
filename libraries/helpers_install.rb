@@ -13,7 +13,11 @@ module ::IgniteCookbook
       def setup_host
         setup_host_kernel
         setup_host_environment_variables
-        setup_docker if new_resource.install_docker
+        if new_resource.install_docker
+          setup_docker
+        else
+          mimic_docker
+        end
         setup_packages
       end
 
@@ -62,6 +66,18 @@ module ::IgniteCookbook
       def setup_docker
         setup_docker_repo
         setup_docker_package
+      end
+
+      # Mimic docker per Slack converstion:
+      #https://weave-community.slack.com/archives/CL1A4S5UJ/p1580745314038700
+      def mimic_docker
+        file '/usr/bin/docker' do
+          content 'echo mimic-docker'
+          owner 'root'
+          group 'root'
+          mode '0755'
+          action :create
+        end
       end
 
       def setup_docker_repo

@@ -10,10 +10,6 @@
 [tag]
 	gpgsign = true
 	forceSignAnnotated = true
-[remote "origin"]
-	url = https://github.com/bbros-dev/creditrisk.git
-	fetch = +refs/heads/*:refs/remotes/origin/*
-[user]
-	signingKey = ~/.config/signify/begleybrothers@gmail.com.sec
-	name = Begley Brothers Inc.
-	email = begleybrothers@gmail.com
+[remote "upstream"]
+	url = https://github.com/BegleyBrothers/cookbook-ignite.git
+	fetch = +refs/heads/*:refs/remotes/upstream/*
