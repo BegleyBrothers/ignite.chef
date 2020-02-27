@@ -8,6 +8,9 @@ Install Weaveworks [Ignite](https://ignite.readthedocs.io/en/stable/index.html).
 
 ## Usage
 
+Requires [Chef client version](https://docs.chef.io/release_notes.html) `>= 14.3`
+- for `sysctl` amd `kernel_module` resources.
+
 For working/tested usage examples, see `./test/cookbooks/ignite_test`.
 
 The `service.rb` recipe is likely most useful in production settings.

@@ -10,6 +10,54 @@ module ::IgniteCookbook
       #########################
       # Action helper methods
       #########################
+      def setup_host
+        setup_host_kernel
+        setup_host_environment_variables
+        setup_docker if new_resource.install_docker
+        setup_packages
+      end
+
+      def setup_host_kernel
+        setup_host_kernel_modules
+        setup_host_kernel_parameters
+      end
+
+      def setup_host_environment_variables
+        append_if_no_line "Set CONFIG_VIRTIO_BLK" do
+          path '/etc/environment'
+          line 'export CONFIG_VIRTIO_BLK=y'
+        end
+        append_if_no_line "Set CONFIG_VIRTIO_NET" do
+          path '/etc/environment'
+          line 'export CONFIG_VIRTIO_NET=y'
+        end
+        append_if_no_line "Set CONFIG_KEYBOARD_ATKBD" do
+          path '/etc/environment'
+          line "export CONFIG_KEYBOARD_ATKBD=#{new_resource.keyboard_atkbd}"
+        end
+        append_if_no_line "Set CONFIG_SERIO_I8042" do
+          path '/etc/environment'
+          line "export CONFIG_SERIO_I8042=#{new_resource.serio_i8042}"
+        end
+      end
+
+      def setup_host_kernel_modules
+        # https://github.com/weaveworks/weave/issues/2789#issuecomment-433329349
+        kernel_module 'br_netfilter'
+      end
+
+      # See: https://ignite.readthedocs.io/en/stable/dependencies.html
+      def setup_host_kernel_parameters
+        sysctl 'net.ipv6.conf.all.forwarding' do
+          value 1
+        end
+        sysctl 'net.ipv4.ip_forward' do
+          value 1
+        end
+        sysctl 'net.bridge.bridge-nf-call-iptables' do
+          value 0
+        end
+      end
 
       def setup_docker
         setup_docker_repo
@@ -35,6 +83,7 @@ module ::IgniteCookbook
           not_if '[ ! -z $(docker info) ]'
         end
       end
+
       def setup_packages
         case node['platform_family']
         when 'rhel','fedora'
@@ -46,14 +95,14 @@ module ::IgniteCookbook
 
       def setup_debian_packages
         apt_update 'update'
-        package %w(binutils dmsetup git openssh-client)
+        package %w(binutils dmsetup e2fsprogs git mount openssh-client tar jq)
         package 'containerd' do
           not_if { node['packages'].keys.include? 'containerd' }
         end
       end
 
       def setup_rhel_packages
-        package %w(e2fsprogs openssh-clients git)
+        package %w(binutils device-mapper e2fsprogs git openssh-clients tar util-linux)
         package 'containerd.io' do
           not_if { node['packages'].keys.include? 'containerd.io' }
         end

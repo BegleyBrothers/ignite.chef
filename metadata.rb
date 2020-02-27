@@ -9,7 +9,7 @@ description 'Installs/Configures weaveworks-ignite'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 issues_url 'https://github.com/begleybrothers/cookbook-ignite/issues'
 source_url 'https://github.com/begleybrothers/cookbook-ignite'
-version '0.3.0'
+version '0.5.0'
 
 source_url 'https://github.com/chef-cookbooks/docker'
 issues_url 'https://github.com/chef-cookbooks/docker/issues'
@@ -30,5 +30,6 @@ depends 'chef-apt-docker'
 depends 'chef-yum-docker'
 depends 'docker'
 depends 'git'
+depends 'line'
 
 gem 'docker-api', '~> 1.34.0'

@@ -91,7 +91,7 @@ provisioner:
   name: chef_zero
   accept_license: true
   product_name: chef
-  product_version: 13.11.3
+  product_version: 14.14.29
   install_strategy: once
 
   # We will grab boxes from bento on Vagrant Cloud

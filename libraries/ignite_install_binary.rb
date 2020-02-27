@@ -16,8 +16,14 @@ module IgniteCookbook
               desired_state: false,
               description: 'Constrain URL construction to Ignite URIs.'
     property  :install_docker, [true, false],
-              default: false,
+              default: true,
               description: 'Install Docker service. Warning: Docker support is deprecated, and will be removed in a future release.'
+    property  :serio_i8042, String,
+              default: 'y',
+              description: 'Serial IO device. Optional but recommended.'
+    property  :keyboard_atkbd, String,
+              default: 'y',
+              description: 'Keyboard device. Optional but recommended.'
 
     default_action :install
 
@@ -38,7 +44,7 @@ module IgniteCookbook
     end
 
     action :install do
-      setup_docker if new_resource.install_docker
+      setup_host
 
       bash 'Install CNI plugins' do
         code <<-EOH
