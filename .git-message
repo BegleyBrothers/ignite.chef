@@ -1,9 +1,13 @@
-// If applied, this commit will...
-// [Add/Fix/Remove/Update/Refactor/Document] [issue #id] [summary]
+[Add/Evolve/Fix/Refactor] [API/Auto/Doc/Infra/Sec/Web] Summary
 
-// Why is it necessary? (Bug fix, feature, improvements?)
+Why is it necessary? (fix, feature, improvements?)
+
 -
-// How does the change address the issue? 
+
+How does the change address the issue? 
+
 -
-// What side effects does this change have?
+
+What side effects does this change have?
+
 -

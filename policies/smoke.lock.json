@@ -1,5 +1,5 @@
 {
-  "revision_id": "1425874484d40d72d4cc06b7e32b5bc09df09ae7fc24c559f6273beecbed1e2f",
+  "revision_id": "5b6864e3185b2e0a1c03cfd3753682f04ab15d96094ea97e4b30b0846cc469b7",
   "name": "ignite_kitchen",
   "run_list": [
     "recipe[ignite_test::smoke]"
@@ -52,17 +52,6 @@
         "version": "4.12.0"
       }
     },
-    "etcd": {
-      "version": "5.6.0",
-      "identifier": "ea53c83aa530c0a8fecaef50e0f3c4eba8eba839",
-      "dotted_decimal_identifier": "65957263992762560.47567943639294195.216516430374969",
-      "cache_key": "etcd-5.6.0-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/etcd/versions/5.6.0/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/etcd/versions/5.6.0/download",
-        "version": "5.6.0"
-      }
-    },
     "git": {
       "version": "10.0.0",
       "identifier": "16726d6f9285ca00f4abe4a895dc1a219ea6c4fa",
@@ -75,19 +64,19 @@
       }
     },
     "ignite": {
-      "version": "0.3.0",
-      "identifier": "57e8d4ea75c9214569a4717207f4514fdaae4d52",
-      "dotted_decimal_identifier": "24744324138125601.19537928391886836.89403413122386",
+      "version": "0.5.0",
+      "identifier": "eb9c5a34b18e0a534ccb20749189a65a9becce9e",
+      "dotted_decimal_identifier": "66318530772045322.23446858373566857.182908093255326",
       "source": "..",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
         "remote": null,
-        "revision": "1c055c318405ee547ed8eab4c0d1583f6a97b9c3",
+        "revision": "aa6dd7d9a444d4dec2e22f03208ad8220ba8c055",
         "working_tree_clean": false,
-        "published": true,
+        "published": false,
         "synchronized_remote_branches": [
-          "origin/develop"
+
         ]
       },
       "source_options": {
@@ -95,23 +84,34 @@
       }
     },
     "ignite_test": {
-      "version": "0.1.0",
-      "identifier": "92e064a2f4ba5db2762e35226020ed383ebdddf7",
-      "dotted_decimal_identifier": "41342069435054685.50232486686515232.260825826582007",
+      "version": "0.5.0",
+      "identifier": "cb49632646f3bb73b0c4c9561a802f040fdfe9cd",
+      "dotted_decimal_identifier": "57220110465037243.32563981559667328.51694492707277",
       "source": "../test/cookbooks/ignite_test",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
         "remote": null,
-        "revision": "1c055c318405ee547ed8eab4c0d1583f6a97b9c3",
+        "revision": "aa6dd7d9a444d4dec2e22f03208ad8220ba8c055",
         "working_tree_clean": false,
-        "published": true,
+        "published": false,
         "synchronized_remote_branches": [
-          "origin/develop"
+
         ]
       },
       "source_options": {
         "path": "../test/cookbooks/ignite_test"
+      }
+    },
+    "line": {
+      "version": "2.7.0",
+      "identifier": "bfd24d6aacfc884586c420189fc46e121af47ff6",
+      "dotted_decimal_identifier": "53992950495771784.19569950303231940.121024040697846",
+      "cache_key": "line-2.7.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/line/versions/2.7.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/line/versions/2.7.0/download",
+        "version": "2.7.0"
       }
     }
   },
@@ -140,10 +140,6 @@
         "= 4.12.0"
       ],
       [
-        "etcd",
-        "= 5.6.0"
-      ],
-      [
         "git",
         "= 10.0.0"
       ],
@@ -153,7 +149,11 @@
       ],
       [
         "ignite_test",
-        "= 0.1.0"
+        "= 0.5.0"
+      ],
+      [
+        "line",
+        "= 2.7.0"
       ]
     ],
     "dependencies": {
@@ -169,16 +169,10 @@
       "docker (4.12.0)": [
 
       ],
-      "etcd (5.6.0)": [
-        [
-          "docker",
-          ">= 0.0.0"
-        ]
-      ],
       "git (10.0.0)": [
 
       ],
-      "ignite (0.3.0)": [
+      "ignite (0.5.0)": [
         [
           "audit",
           ">= 0.0.0"
@@ -198,21 +192,20 @@
         [
           "git",
           ">= 0.0.0"
+        ],
+        [
+          "line",
+          ">= 0.0.0"
         ]
       ],
-      "ignite_test (0.1.0)": [
-        [
-          "docker",
-          ">= 0.0.0"
-        ],
-        [
-          "etcd",
-          ">= 0.0.0"
-        ],
+      "ignite_test (0.5.0)": [
         [
           "ignite",
           ">= 0.0.0"
         ]
+      ],
+      "line (2.7.0)": [
+
       ]
     }
   }

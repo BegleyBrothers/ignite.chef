@@ -1,10 +1,19 @@
+[branch]
+  autosetupmerge = true
 [commit]
+  gpgsign = true
 	template = .git-message
-	gpgsign = true
+[credential]
+	helper = cache --timeout=3600
+[gpg]
+	program = signify-notes
 [tag]
 	gpgsign = true
 	forceSignAnnotated = true
+[remote "origin"]
+	url = https://github.com/bbros-dev/creditrisk.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
 [user]
-	signingKey = 1E41631890835FC3
-[gpg]
-	program = /usr/bin/gpg
+	signingKey = ~/.config/signify/begleybrothers@gmail.com.sec
+	name = Begley Brothers Inc.
+	email = begleybrothers@gmail.com

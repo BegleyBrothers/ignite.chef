@@ -108,5 +108,6 @@ module IgniteCookbook
       action_stop
       action_start
     end
+
   end
 end

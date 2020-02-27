@@ -101,11 +101,7 @@ module IgniteCookbook
 
       installation do
         action :install
-        notifies :enable, new_resource, :immediately
-      end
-
-      svc_manager do
-        action :restart
+        notifies :restart, new_resource, :immediately
       end
     end
 
@@ -119,11 +115,11 @@ module IgniteCookbook
       end
     end
 
-    action :enable do
-      svc_manager do
-        action :enable
-      end
-    end
+    # action :enable do
+    #   svc_manager do
+    #     action :enable
+    #   end
+    # end
 
     action :start do
       svc_manager do
