@@ -13,12 +13,9 @@ module ::IgniteCookbook
       def setup_host
         setup_host_kernel
         setup_host_environment_variables
-        if new_resource.install_docker
-          setup_docker
-        else
-          mimic_docker
-        end
+        setup_docker
         setup_packages
+        setup_cni
       end
 
       def setup_host_kernel
@@ -64,6 +61,14 @@ module ::IgniteCookbook
       end
 
       def setup_docker
+        if new_resource.install_docker
+          install_docker
+        else
+          mimic_docker
+        end
+      end
+
+      def install_docker
         setup_docker_repo
         setup_docker_package
       end
@@ -110,19 +115,35 @@ module ::IgniteCookbook
 
       def setup_debian_packages
         apt_update 'update'
-        package %w(binutils dmsetup e2fsprogs git mount openssh-client tar jq)
+        package %w(binutils dmsetup e2fsprogs git mount openssh-client tar jq wget)
         package 'containerd' do
           not_if { node['packages'].keys.include? 'containerd' }
         end
       end
 
       def setup_rhel_packages
-        package %w(binutils device-mapper e2fsprogs git openssh-clients tar util-linux)
+        package %w(binutils device-mapper e2fsprogs git openssh-clients tar util-linux wget)
         package 'containerd.io' do
           not_if { node['packages'].keys.include? 'containerd.io' }
         end
       end
 
+      def setup_cni
+        cni_script = Tempfile.new('cni-install').path
+
+        cookbook_file 'Create CNI install script' do
+          source 'scripts/cni-install.sh'
+          path cni_script
+          mode '00755'
+          cookbook 'ignite'
+          not_if { ::File.exist?('/opt/cni/bin/bridge') }
+        end
+
+        execute 'CNI installation script' do
+          command cni_script
+          creates '/opt/cni/bin/bridge'
+        end
+      end
       # given a Ignite URI return a Ignite URL (https) for new_resource.filename.
       # @param [String] uri the Ignite file to be installed.
       #
