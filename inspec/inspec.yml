@@ -4,13 +4,11 @@ maintainer: Begley Brothers Inc.
 copyright: Begley Brothers Inc.
 copyright_email: begleybrothers@gmail.com
 license: Apache-2.0
-summary: An InSpec Compliance Profile
+summary: An InSpec Compliance Profile for Ignite micro-VMs
 version: 0.1.0
 supports:
   - os-family: linux
 depends:
-  - name: docker
-    path: ./profiles/docker
   - name: linux-baseline
     path: ./profiles/linux-baseline
 inspec_version: "~> 2.1"

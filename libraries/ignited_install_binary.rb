@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgnitedInstallBinary < IgniteBase
     ################

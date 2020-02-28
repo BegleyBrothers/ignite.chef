@@ -1,3 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
+#
+# See details in LICENSE.
+
 # Two variables, one recipe.
 caname = 'ignite_service_default'
 caroot = "/ca/#{caname}"
@@ -1123,7 +1128,7 @@ ignite_vm 'sysctls' do
   repo 'alpine'
   tag '3.1'
   command '/sbin/sysctl -a'
-  sysctls 'net.core.somaxconn' => '65535',
+  sysctls 'net.core.somaxconn'        => '65535',
           'net.core.xfrm_acq_expires' => '42'
   timeout 40
   action :run_if_missing
@@ -1225,13 +1230,13 @@ ignite_vm 'health_check' do
   repo 'alpine'
   tag '3.1'
   health_check(
-    'Test' =>
-      [
-        'string',
-      ],
-    'Interval' => 0,
-    'Timeout' => 0,
-    'Retries' => 0,
+    'Test'        =>
+                     [
+                       'string',
+                     ],
+    'Interval'    => 0,
+    'Timeout'     => 0,
+    'Retries'     => 0,
     'StartPeriod' => 0
   )
   action :run

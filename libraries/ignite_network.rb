@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteNetwork < IgniteBase
     resource_name :ignite_network

@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteImage < IgniteBase
     resource_name :ignite_image

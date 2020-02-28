@@ -1,3 +1,6 @@
+
+# frozen_string_literal: true
+
 # SPDX-License-Identifier: Apache 2.0che 2.0
 # Copyright:: 2020, Begley Brothers.
 #
@@ -7,13 +10,13 @@
 # https://docs.chef.io/policyfile.html
 
 # A name that describes what the system you're building with Chef does.
-name 'ignite'
+name('ignite')
 
 # Where to find external cookbooks:
-default_source :supermarket
+default_source(:supermarket)
 
 # Specify a custom source for a single cookbook:
-cookbook 'ignite', path: '.'
+cookbook('ignite', path: '.')
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list 'ignite::default'
+run_list('ignite::default')

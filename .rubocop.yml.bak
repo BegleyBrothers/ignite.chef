@@ -1,4 +1,10 @@
+# inherit_from: .rubocop_todo.yml
+# require:
+#   - rubocop-rspec
+#   - rubocop-performance
+
 AllCops:
+  EnabledByDefault: true
   TargetRubyVersion: 2.5.5
   Exclude:
     - 'app/views/**/*'
@@ -11,18 +17,12 @@ AllCops:
 
 Style/Copyright:
   Enabled: true
-  Notice: '^# Copyright \(c\) 2020 Begley Brothers Inc\.'
-  AutocorrectNotice: | 
-    # SPDX-License-Identifier: Apache-2.0
-    # Copyright (c) 2020 Begley Brothers Inc.
-    #
-    # See details in LICENSE.
+  AutocorrectNotice: '# Copyright:: 2020, Begley Brothers Inc.'
 
 Layout/AlignHash:
   Enabled: true
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
-
 Style/RegexpLiteral:
   AllowInnerSlashes: true
   EnforcedStyle: mixed

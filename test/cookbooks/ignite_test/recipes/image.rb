@@ -1,3 +1,4 @@
+
 # Two variables, one recipe.
 caname = 'ignite_service_default'
 caroot = "/ca/#{caname}"

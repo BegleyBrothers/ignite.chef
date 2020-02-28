@@ -1,3 +1,7 @@
-# Example InSpec Profile
+# Ignite InSpec Profile
 
-This example shows the implementation of an InSpec profile.
+A InSpec profile for:
+
+- `ignite` CLI
+- `ignited` daemon
+- `ignite-ignited` service

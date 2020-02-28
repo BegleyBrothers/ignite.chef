@@ -1,3 +1,4 @@
+
 # pull alpine image
 ignite_image 'alpine' do
   tag '3.1'

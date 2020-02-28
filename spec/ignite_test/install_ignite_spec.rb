@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 
 describe 'ignite_test::install_binary' do

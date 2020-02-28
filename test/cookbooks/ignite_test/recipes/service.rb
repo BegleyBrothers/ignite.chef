@@ -1,3 +1,4 @@
+
 #########################
 # service named 'ignited'
 #########################
@@ -18,7 +19,7 @@ ignite_service 'ignited2' do
   action [:stop, :delete]
 end
 
-#... is the same as delete the service alone.
+# ... is the same as delete the service alone.
 ignite_service 'ignited' do
   action [:delete]
 end

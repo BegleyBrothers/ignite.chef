@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteServiceManagerSysvinitRhel < IgniteServiceBase
     resource_name :ignite_service_manager_sysvinit_rhel

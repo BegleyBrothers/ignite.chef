@@ -1,4 +1,5 @@
-#ignite_service 'default'
+
+# ignite_service 'default'
 
 ignited_installation_binary 'default' do
   uri node['ignite']['uri']

@@ -1,3 +1,4 @@
+
 # We use a custom scheme (ignt) to identify the binary files to be installed.
 module URI
   class Ignt < Generic

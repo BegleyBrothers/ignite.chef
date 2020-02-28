@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteServiceManagerSystemd < IgniteServiceBase
     resource_name :ignite_service_manager_systemd

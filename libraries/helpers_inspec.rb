@@ -1,5 +1,6 @@
 
 # encoding: utf-8
+
 module IgniteCookbook
   module IgniteHelpers
     module Inspec

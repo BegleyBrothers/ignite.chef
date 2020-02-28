@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   require_relative 'ignite_service_base'
 

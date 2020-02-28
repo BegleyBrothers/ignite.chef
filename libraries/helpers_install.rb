@@ -1,3 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
+#
+# See details in LICENSE.
+
+# Copyright(c) 2020 Begley Brothers Inc.
 module ::IgniteCookbook
   module IgniteHelpers
     module Install
@@ -144,6 +150,7 @@ module ::IgniteCookbook
           creates '/opt/cni/bin/bridge'
         end
       end
+
       # given a Ignite URI return a Ignite URL (https) for new_resource.filename.
       # @param [String] uri the Ignite file to be installed.
       #

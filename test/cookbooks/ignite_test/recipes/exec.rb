@@ -1,3 +1,4 @@
+
 docker_image 'busybox' do
   action :pull_if_missing
 end

@@ -16,9 +16,9 @@ ignite_service 'ignited' do
 end
 
 # Create a VM (generate UUID with SecureRandom.alphanumeric(16))...
-template 'Smoke test declarative VM' do
-  source 'smoke/smoke-test.json.erb'
-  path '/etc/firecracker/manifests/smoke-test.json'
+template 'Regression test declarative VM using YAML' do
+  source 'issues/542/manifest.yml.erb'
+  path '/etc/firecracker/manifests/issue-542.yml'
   helper(:uuid) { 'RPfrdQXMFFadVN6t'.downcase }
   owner 'root'
   group 'root'
@@ -28,3 +28,4 @@ template 'Smoke test declarative VM' do
 end
 
 # Inspec tests verify the VM is as defined.
+# See test/integration/<recipe-name>/inspec

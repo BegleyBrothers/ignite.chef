@@ -1,3 +1,4 @@
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -84,6 +85,7 @@ namespace :integration do
     config = { loader: Kitchen::Loader::YAML.new(loader_config) }
     kitchen_instances(regexp, config).each { |i| i.send(action) }
   end
+
   # Default to Policyfile
   def product_name
     'Policyfile'
@@ -94,8 +96,8 @@ namespace :integration do
     FileList["#{product_name}.rb"]
   end
 
-  desc "Compile all Policfile.rb"
-  task :compile_policies do 
+  desc 'Compile all Policfile.rb'
+  task :compile_policies do
     rm Dir.glob('*.lock.json')
     policies.each do |policyfile|
       sh 'chef', 'install', policyfile
@@ -108,4 +110,4 @@ namespace :integration do
   end
 end
 
-task default: %w[integration:digitalocean]
+task default: %w(integration:digitalocean)

@@ -1,5 +1,5 @@
 {
-  "revision_id": "583c18aa9843449aaf13b86770973bf7a2b1a0319a57b02004222f4246ac10fe",
+  "revision_id": "aaa0ad1dab0bafb0fa77b2de3d3421d24989f1a46063aee85f3ffa0791f13676",
   "name": "ignite_kitchen",
   "run_list": [
     "recipe[ignite_test::smoke]"
@@ -65,18 +65,18 @@
     },
     "ignite": {
       "version": "0.5.0",
-      "identifier": "926b931df22801ab6ef34dfef73665fdd2fbfa36",
-      "dotted_decimal_identifier": "41213626206529537.48254212282185526.112140840860214",
+      "identifier": "29213e507745259ec6d050dcf9eb5dd5375e9a8f",
+      "dotted_decimal_identifier": "11577025566819621.44691644332440043.103170338364047",
       "source": "..",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
-        "remote": null,
-        "revision": "24d0317d2351662f1875fd60ad07a3812b116e8c",
+        "remote": "https://bbros-dev:4f456c4d51b53d28e1de187359b966a39dcb1ba1@github.com/BegleyBrothers/cookbook-ignite.git",
+        "revision": "8c3859a9fe7ebc0d055d0f93cc5365709937056f",
         "working_tree_clean": false,
-        "published": false,
+        "published": true,
         "synchronized_remote_branches": [
-
+          "origin/develop"
         ]
       },
       "source_options": {
@@ -85,18 +85,18 @@
     },
     "ignite_test": {
       "version": "0.5.0",
-      "identifier": "cb49632646f3bb73b0c4c9561a802f040fdfe9cd",
-      "dotted_decimal_identifier": "57220110465037243.32563981559667328.51694492707277",
+      "identifier": "998b296ac01682c345a16669d5fb2e8cd3792342",
+      "dotted_decimal_identifier": "43218681437623938.54964179968841211.51182378230594",
       "source": "../test/cookbooks/ignite_test",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
-        "remote": null,
-        "revision": "24d0317d2351662f1875fd60ad07a3812b116e8c",
+        "remote": "https://bbros-dev:4f456c4d51b53d28e1de187359b966a39dcb1ba1@github.com/BegleyBrothers/cookbook-ignite.git",
+        "revision": "8c3859a9fe7ebc0d055d0f93cc5365709937056f",
         "working_tree_clean": false,
-        "published": false,
+        "published": true,
         "synchronized_remote_branches": [
-
+          "origin/develop"
         ]
       },
       "source_options": {

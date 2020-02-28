@@ -1,3 +1,4 @@
+
 service 'ignited' do
   action :enable
 end

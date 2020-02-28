@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteContainer < IgniteBase
     resource_name :ignite_vm
@@ -594,14 +595,12 @@ module IgniteCookbook
       return unless state['Running']
       kill_after_str = "(will kill after #{new_resource.kill_after}s)" if new_resource.kill_after
       converge_by "stopping #{new_resource.vm_name} #{kill_after_str}" do
-        begin
-          with_retries do
-            current_resource.vm.stop!('timeout' => new_resource.kill_after)
-            wait_running_state(false)
-          end
-        rescue Ignite::Error::TimeoutError
-          raise Ignite::Error::TimeoutError, "VM failed to stop, consider adding kill_after to the vm #{new_resource.vm_name}"
+        with_retries do
+          current_resource.vm.stop!('timeout' => new_resource.kill_after)
+          wait_running_state(false)
         end
+      rescue Ignite::Error::TimeoutError
+        raise Ignite::Error::TimeoutError, "VM failed to stop, consider adding kill_after to the vm #{new_resource.vm_name}"
       end
     end
 

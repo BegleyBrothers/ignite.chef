@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   module IgniteHelpers
     module Common

@@ -1,3 +1,4 @@
+
 ignite_binary 'default' do
   action :install
 end

@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteServiceBase < IgniteBase
     ################

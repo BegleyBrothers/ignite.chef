@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteServiceManagerExecute < IgniteServiceBase
     resource_name :ignite_service_manager_execute

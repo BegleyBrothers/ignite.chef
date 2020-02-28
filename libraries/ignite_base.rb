@@ -1,3 +1,4 @@
+
 module IgniteCookbook
   class IgniteBase < ::Chef::Resource
     # Eventually: require Ignite-api gem.
