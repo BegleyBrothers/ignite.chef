@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
+#
+# See details in LICENSE.
 
 # We use a custom scheme (ignt) to identify the binary files to be installed.
 module URI

@@ -1,7 +1,8 @@
-
-# SPDX-License-Identifier: Apache 2.0
-# Copyright:: 2020, Begley Brothers.
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
 #
+# See details in LICENSE.
+
 # Policyfile.rb - Describe how you want Chef Infra Client to build your system.
 #
 # For more information on the Policyfile feature, visit

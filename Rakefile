@@ -1,10 +1,10 @@
-
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
-# SPDX-License-Identifier: MIT
-# Copyright:: 2020, Begley Brothers.
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
 #
+# See details in LICENSE.
+
 # Available Rake tasks:
 #
 # $ rake -T
