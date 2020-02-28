@@ -136,7 +136,7 @@ module IgniteCookbook
 
     declare_action_class.class_eval do
       def parse_registry_host(val)
-        val.sub(%r{https?://}, '').split('/').first
+        val.sub(/https?:\/\//, '').split('/').first
       end
     end
   end

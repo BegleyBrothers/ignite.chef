@@ -131,7 +131,7 @@ module IgniteCookbook
         return nil if v.empty?
         # Parse docker input of /source:/vm_name/dest into source:dest
         IgniteBase::UnorderedArray.new(Array(v)).map! do |link|
-          if link =~ %r{^/(?<source>.+):/#{name}/(?<dest>.+)}
+          if link =~ /^\/(?<source>.+):\/#{name}\/(?<dest>.+)/
             link = "#{Regexp.last_match[:source]}:#{Regexp.last_match[:dest]}"
           end
           link
