@@ -16,7 +16,7 @@ group :development do
   gem 'chef-dk'
   gem 'chefspec'
   gem 'cookstyle'
-  gem 'coveralls', require: false
+  gem 'coveralls', "~>0.8.23", :require => false
   gem 'inspec'
   gem 'kitchen-transport-speedy'
   gem 'lefthook'

@@ -1,5 +1,5 @@
 {
-  "revision_id": "0aeb73ce8f228a8814da3e9998aaf0265441ff871a4fc5a3dacfc818c35676b5",
+  "revision_id": "0550a1bf8b72f83db4d722365d4f89681ba7727876d13bac8e9a5a532e7ba812",
   "name": "ignite_chefspec",
   "run_list": [
     "recipe[ignite_test::default]"
@@ -65,14 +65,14 @@
     },
     "ignite": {
       "version": "0.5.0",
-      "identifier": "e16dfb2d6d5fed4abc7257b3fb08189eb09cec6b",
-      "dotted_decimal_identifier": "63452795326259181.21036347560295176.27069846973547",
+      "identifier": "0116514e044f69182eccfdb87a0348144f0479a7",
+      "dotted_decimal_identifier": "306013433778025.6806857405987331.79252062239143",
       "source": "..",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
-        "remote": "https://bbros-dev:4f456c4d51b53d28e1de187359b966a39dcb1ba1@github.com/BegleyBrothers/cookbook-ignite.git",
-        "revision": "8c3859a9fe7ebc0d055d0f93cc5365709937056f",
+        "remote": "https://bbros-dev:ad2458a1aa88a5c323b98ebd84e7189bd2110501@github.com/BegleyBrothers/cookbook-ignite.git",
+        "revision": "b72232cfef8270d6ded7553cad883aa078885f36",
         "working_tree_clean": false,
         "published": true,
         "synchronized_remote_branches": [
@@ -85,14 +85,14 @@
     },
     "ignite_test": {
       "version": "0.5.0",
-      "identifier": "998b296ac01682c345a16669d5fb2e8cd3792342",
-      "dotted_decimal_identifier": "43218681437623938.54964179968841211.51182378230594",
+      "identifier": "a3e989d7dd06d9d4cfdb1ed4575f5959694e8540",
+      "dotted_decimal_identifier": "46137199445214937.59901235084679007.98240553715008",
       "source": "../test/cookbooks/ignite_test",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
-        "remote": "https://bbros-dev:4f456c4d51b53d28e1de187359b966a39dcb1ba1@github.com/BegleyBrothers/cookbook-ignite.git",
-        "revision": "8c3859a9fe7ebc0d055d0f93cc5365709937056f",
+        "remote": "https://bbros-dev:ad2458a1aa88a5c323b98ebd84e7189bd2110501@github.com/BegleyBrothers/cookbook-ignite.git",
+        "revision": "b72232cfef8270d6ded7553cad883aa078885f36",
         "working_tree_clean": false,
         "published": true,
         "synchronized_remote_branches": [

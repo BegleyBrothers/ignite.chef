@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright (c) 2020 Begley Brothers Inc.
+# Copyright:: (c) 2020 Begley Brothers Inc.
 #
 # See details in LICENSE.
 
@@ -20,14 +20,6 @@ describe 'ignite_test::service' do
   end
 
   it 'creates service[ignite-ignited]' do
-    # directory[/usr/lib/ignite]
-    # /lib/systemd/system/ignite-ignited.socket
-    # /lib/systemd/system/ignite-ignited.service
-    # /etc/systemd/system/ignite-ignited.socket
-    # /etc/systemd/system/ignite-ignited.service
-    # execute[systemctl daemon-reload]
-    # execute[systemctl try-restart ignite-ignited]
-    # service[ignite-ignited]
     expect(chef_run).to create_directory('/usr/lib/ignite')
   end
 
@@ -44,12 +36,13 @@ describe 'ignite_test::service' do
   end
 
   it 'expect execute systemctl try-restart ignite-ignited to be created' do
-    ignt_rsrc = chef_run.execute('systemctl try-restart ignite-ignited')
-    expect(ignt_rsrc).to do_nothing
+    chef_run.execute('systemctl try-restart ignite-ignited')
+    expect(chef_run).to start_service('ignite-ignited')
   end
 
-  it 'expect service ignite-ignited to do nothing' do
-    ignt_rsrc = chef_run.service('ignite-ignited')
-    expect(ignt_rsrc).to do_nothing
+  it 'expect service ignite-ignited to disable and stop' do
+    chef_run.service('ignite-ignited')
+    expect(chef_run).to stop_service('ignite-ignited')
+    expect(chef_run).to disable_service('ignite-ignited')
   end
 end

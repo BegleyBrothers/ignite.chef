@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright (c) 2020 Begley Brothers Inc.
+# Copyright:: (c) 2020 Begley Brothers Inc.
 #
 # See details in LICENSE.
 
@@ -39,18 +39,18 @@ describe 'ignite_test::install_binary' do
 
   context 'binary file names for Ubuntu 18.04' do
     cached(:chef_run) do
-      ChefSpec::SoloRunner.new(platform:  'ubuntu',
-                               version:   '18.04',
-                               step_into: ['ignited_binary']).converge('ignite_test::service', described_recipe)
+      ChefSpec::SoloRunner.new(
+        platform:  'ubuntu',
+        version:   '18.04',
+        step_into: ['ignited_binary']).converge('ignite_test::service', described_recipe)
     end
 
     it 'resolves URI to ignited binary file URL.' do
       expect(chef_run).to create_remote_file('/usr/bin/ignited')
-        .with(source: 'https://github.com/weaveworks/ignite/releases/download/0.6.3/ignited-amd64')
+        .with(source: 'https://github.com/weaveworks/ignite/releases/download/v0.6.3/ignited-amd64')
     end
     it 'notifies ignite_service[ignited] to run immediately' do
-      expect(chef_run.remote_file('/usr/bin/ignited')).to
-      notify('ignite_service[ignited]').to(:restart).immediately
+      expect(chef_run.remote_file('/usr/bin/ignited')).to_not notify('ignite_service[ignited]').to(:restart).immediately
     end
   end
 end

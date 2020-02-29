@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright (c) 2020 Begley Brothers Inc.
+# Copyright:: (c) 2020 Begley Brothers Inc.
 #
 # See details in LICENSE.
 
@@ -41,7 +41,7 @@ describe 'ignite_test::install_binary' do
 
     it 'resolves URI to ignite binary file URL.' do
       expect(chef_run).to create_remote_file('/usr/bin/ignite')
-        .with(source: 'https://github.com/weaveworks/ignite/releases/download/0.6.3/ignite-amd64')
+        .with(source: 'https://github.com/weaveworks/ignite/releases/download/v0.6.3/ignite-amd64')
     end
   end
 end
