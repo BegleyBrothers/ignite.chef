@@ -19,8 +19,8 @@ require 'bundler/setup'
 namespace :style do
   require 'cookstyle'
   require 'rubocop/rake_task'
-  desc 'RuboCop'
-  RuboCop::RakeTask.new(:ruby) do |task|
+  desc 'RuboCop Cookstyle'
+  RuboCop::RakeTask.new(:chef) do |task|
     task.patterns = ['attributes/**/*.rb',
                      'libraries/**/*.rb',
                      'policies/**/*.rb',
@@ -47,14 +47,14 @@ end
 
 desc 'Circle CI Tasks'
 # Digital ocean tests are costly
-# task circleci: %w(style:ruby unit:circleci_rspec integration:digitalocean)
-task circleci: %w(style:ruby unit:circleci_rspec)
+# task circleci: %w(style:chef unit:circleci_rspec integration:digitalocean)
+task circleci: %w(style:chef unit:circleci_rspec)
 
 desc 'Rubocop, CookStyle & ChefSpec'
-task default: %w(style:ruby unit:rspec)
+task default: %w(style:chef unit:rspec)
 
 desc 'Rubocop & CookStyle'
-task style_only: %w(style:ruby)
+task style_only: %w(style:chef)
 
 desc 'Run Test Kitchen integration tests'
 namespace :integration do

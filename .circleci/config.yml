@@ -11,7 +11,7 @@ jobs: # a collection of steps
           BUNDLE_PATH: vendor/bundle
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
-      - run: sudo apt-get install libarchive13
+      - run: sudo apt-get install libarchive13 # workaround tar file issue
       
       # Which version of bundler?
       - run:
@@ -36,11 +36,11 @@ jobs: # a collection of steps
             - vendor/bundle
 
       - run:
-          name: Run rspec
+          name: Run RuboCop CookStyle guides
           command: |
-            bundle exec rake circleci
+            bundle exec rake style_only
 
 # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
-notify:
-  webhooks:
-    - url: https://coveralls.io/webhook?repo_token=C4NKeu2eEgZg3LwZsaipTK8e0KDRivHJU
+# notify:
+#   webhooks:
+#     - url: https://coveralls.io/webhook?repo_token=C4NKeu2eEgZg3LwZsaipTK8e0KDRivHJU

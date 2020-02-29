@@ -6,14 +6,15 @@
 [commit]
   gpgsign = true
 	template = .git-message
+[core]
+  sshCommand = ssh -i ~/.ssh/$(echo begleybrothers@gmail.com)_ed25519 -F /dev/null
 [credential]
 	helper = cache --timeout=3600
 [gpg]
 	program = signify-notes
 [remote "upstream"]
-	url = https://github.com/BegleyBrothers/cookbook-ignite.git
+	url = url = git@github.com:BegleyBrothers/cookbook-ignite.git
 	fetch = +refs/heads/*:refs/remotes/upstream/*
 [tag]
 	gpgsign = true
 	forceSignAnnotated = true
-
