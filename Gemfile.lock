@@ -692,6 +692,7 @@ DEPENDENCIES
   chefspec
   cookstyle
   coveralls (~> 0.8.23)
+  ffi-libarchive
   inspec
   kitchen-digitalocean
   kitchen-inspec

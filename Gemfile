@@ -17,6 +17,7 @@ group :development do
   gem 'chefspec'
   gem 'cookstyle'
   gem 'coveralls', "~>0.8.23", :require => false
+  gem 'ffi-libarchive'
   gem 'inspec'
   gem 'kitchen-transport-speedy'
   gem 'lefthook'

@@ -11,7 +11,8 @@ jobs: # a collection of steps
           BUNDLE_PATH: vendor/bundle
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
-
+      - run: sudo apt-get install libarchive13
+      
       # Which version of bundler?
       - run:
           name: Install bundler ${BUNDLE_VERSION}
