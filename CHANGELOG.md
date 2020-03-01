@@ -2,40 +2,59 @@
 
 This file lists changes made in each version of the Ignite cookbook.
 
-## Unreleased: 2020-02-13
+## Contents
+<!--ts-->
+* [Ignite Changelog](#ignite-changelog)
+  * [Release: 1.0.0](#release-100)
+    * [Added](#added)
+    * [Changed](#changed)
+    * [Deprecated](#deprecated)
+    * [Removed](#removed)
+    * [Workarounds](#workarounds)
+    * [Fixed](#fixed)
+    * [Security](#security)
+* [0.1.0 (2020-02-04)](#010-2020-02-04)
+
+<!-- Added by: hedge, at: Sun  1 Mar 16:50:17 AEDT 2020 -->
+
+<!--te-->
+
+## Release: 1.0.0
 
 ### Added
+
 New features
 
+- Add warnings about cloud cost responsibilities.
+- Add Apache 2.0 License and DCO sign-offs.
 - Add Inspec controls for:
-  - Kernel module
+  - Kernel modules (loop and br_netfilter)
   - Environment variables
-- Add install recipe for `ignite` and `ignited`, for platforms:
-  - `amazonlinux-2`
-  - `debian-9`
+  - Manifest launched micro-VM's
+- Add install recipes for `ignite`, `ignited` and service, for platforms:
   - `amazonlinux`
-  - `centos-7`
-  - `fedora-latest`
-  - `ubuntu-16.04`
-  - `ubuntu-18.04`
-- Add install recipe for `ignited` service, for platforms:
-  - `amazonlinux-2`
-  - `debian-9`
-  - `amazonlinux`
-  - `centos-7`
-  - `fedora-latest`
-  - `ubuntu-16.04`
-  - `ubuntu-18.04`
+  - `debian`
+  - `scientificlinux`
+  - `centos`
+  - `fedora`
+  - `redhat`
+  - `ubuntu`
 - Add service configuration templates for:
   - `sytemd`
   - `upstart`
   - `sysvinit`
   - `sysconfig`
-- Add spec unit tests.
+- Add install Docker option (default: `n`)
+- Add install CNI.
+- Add ChefSpec unit tests.
 - Add Test-Kitchen integration tests.
-- Add LeftHook commit hooks
-- Add several code quality gems
-- Add Policyfiles for cookbook and integration tests
+- Add regression test Issue #542: JSON or YAML manifests?
+- Add LeftHook commit hooks.
+- Add several code quality gems.
+- Add Policyfiles for cookbook and integration tests.
+- Add CircleCI build configuration (style/lint tests only).
+- Add Git config to support Signfy signed commit data as Git notes.
+- Add `signify-notes` script.
 
 ### Changed
 Changes in existing functionality.
@@ -56,7 +75,7 @@ Removed features.
 Features or bugs with work-arounds - to be removed in future releases.
 This list is cumulative to ensure nothing gets lost.
 
-- No workarounds.
+- Add mimic docker install even when Docker not used.  Issue #
 
 ### Fixed
 Bug fixes.

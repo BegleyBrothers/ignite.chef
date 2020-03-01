@@ -20,6 +20,18 @@ Install Weaveworks [Ignite](https://ignite.readthedocs.io/en/stable/index.html).
 |:---------------------------|
 | You accept all responsibility for any and all costs incurred by running any code in this repository.  |
 
+## Contents
+<!--ts-->
+* [Ignite: Micro-VM launcher](#ignite-micro-vm-launcher)
+  * [Usage](#usage)
+  * [Development](#development)
+    * [Test-Kitchen](#test-kitchen)
+    * [CI/CD &amp; End-to-End Integration Tests](#cicd--end-to-end-integration-tests)
+    * [CircleCI](#circleci)
+  * [Further Development Notes](#further-development-notes)
+    * [Git &amp; Signed Commit Data](#git--signed-commit-data)
+<!--te-->
+
 ## Usage
 
 See the integration tests for examples of how to write a recipe using this
@@ -164,6 +176,7 @@ to ``${XDG_DATA_HOME}/bin`, which should be in your `${PATH}`:
 XDG_DATA_HOME=~/.local
 mkdir -p ${XDG_DATA_HOME}/signify/bin
 tee ${XDG_DATA_HOME}/signify/bin/signify-notes > /dev/null <<'EOF'
+#!/usr/bin/env bash
 # Usage:
 # ======
 # `signify-notes [GIT COMMAND]` - Git with signify(1) signatures as `git notes`
