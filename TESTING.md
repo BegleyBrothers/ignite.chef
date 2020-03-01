@@ -2,6 +2,14 @@
 
 This document describes the process for testing using Test-Kitchen.
 
+| :warning: WARNING          |
+|:---------------------------|
+| :zap: The following code uses your cloud provider credentials and will cost you money...      |
+
+| :exclamation: NOTE          |
+|:---------------------------|
+| You accept all responsibility for any costs incurred by running any code in this repository.  |
+
 ## Testing Prerequisites
 
 1. Ignite `>=0.6.3`
@@ -11,7 +19,7 @@ This document describes the process for testing using Test-Kitchen.
 
 This Cookbook requires additional testing dependencies that do not ship
 with ChefDK directly. These are listed in the `Gemfile` and are installed
-into the ChefDK ruby environment with the following commands
+into the ChefDK ruby environment with the following commands.
 
 Install dependencies:
 
@@ -24,6 +32,8 @@ Update any installed dependencies to the latest versions:
 ```shell
 chef exec bundle update
 ```
+
+Further details on testing are set out in [TESTING.md](./TESTING.md).
 
 ## Lint & Syntax stage
 
@@ -54,7 +64,9 @@ Tests are be designed to ensure that a recipe has accomplished its goal.
 
 ### Kitchen
 
-Integration tests can be performed on a local workstation using either VirtualBox or VMWare as the virtualization hypervisor. To run tests against all available instances run:
+Integration tests can be performed on a local (Linux) workstation that supports
+virtualization. **Hoever, the default is to run against [DigitalOcean](https://m.do.co/c/9a152ce8c79e)**.
+To run tests against all available instances run:
 
 ```shell
 chef exec kitchen test
@@ -66,8 +78,8 @@ To see a list of available test instances run:
 chef exec kitchen list
 ```
 
-To test specific instance run:
+To test specific suite run:
 
 ```shell
-chef exec kitchen test INSTANCE_NAME
+chef exec kitchen test SUITE_NAME
 ```
