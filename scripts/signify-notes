@@ -42,8 +42,12 @@ log_file="/tmp/signify-notes-${short_date}.log"
 exec {BASH_XTRACEFD}>>${log_file}
 set -o xtrace
 
+function resolve_user_email(){
+  echo $(eval "echo ${1}")
+}
 function getkey () {
-  key_sec="$(git config --includes --get user.signingKey)";
+  key_email="$(git config --includes --get user.signingKey)";
+  key_sec=$(resolve_user_email "${key_email}")
   if [ ! -f "${key_sec}" ]; then
     key_sec=$1
   fi

@@ -8,12 +8,10 @@
 	template = .git-message
 [core]
   sshCommand = ssh -i ~/.ssh/$(git config --get --local --includes user.email)_ed25519 -F /dev/null
-[credential]
-	helper = cache --timeout=3600
 [gpg]
 	program = ./scripts/signify-notes
 [remote "upstream"]
-	url = url = git@github.com:BegleyBrothers/cookbook-ignite.git
+	url = url = git@github.com:BegleyBrothers/chef-ignite.git
 	fetch = +refs/heads/*:refs/remotes/upstream/*
 [tag]
 	gpgsign = true

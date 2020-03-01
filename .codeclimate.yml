@@ -1,3 +1,21 @@
+exclude_patterns:
+- "files/"
+- "inspec/"
+- "policies/"
+- "spec/"
+- "templates/"
+- "tests/"
+- "vendor/"
+
 plugins:
   rubocop:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby:
+  shellcheck:
     enabled: true
