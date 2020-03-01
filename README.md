@@ -49,16 +49,16 @@ in `test/cookbooks/ignite_test` shows how to install:
 The version 1.0 release has only been tested on Ubuntu 18.04 (Bionic Beaver).
 However, this cookbook library supports the following distributions:
 
-| Distribution            | Releases | Status |
-|-------------------------|----------|--------|
-| Amazon Linux            | Any      | TBC    |
-| Centos                  | Any      | TBC    |
-| Scientific Linux        | Any      | TBC    |
-| Oracle                  | Any      | TBC    |
-| Debian                  | Any      | TBC    |
-| Fedora                  | Any      | TBC    |
-| Redhat Enterprise Linux | Any      | TBC    |
-| Ubuntu                  | 18.04    | Tested (DigitalOcean) |
+| Status           | Distribution            | Releases | Detail |
+|:----------------:|-------------------------|----------|--------|
+| :o:              | Amazon Linux            | Any      | TBC    |
+| :o:              | Centos                  | Any      | TBC    |
+| :o:              | Scientific Linux        | Any      | TBC    |
+| :o:              | Oracle                  | Any      | TBC    |
+| :o:              | Debian                  | Any      | TBC    |
+| :o:              | Fedora                  | Any      | TBC    |
+| :o:              | Redhat Enterprise Linux | Any      | TBC    |
+|:heavy_check_mark:| Ubuntu                  | 18.04    | Tested (DigitalOcean) |
 
 If you are able to confirm the following test suite completes for any distro
 release in the table above and for any cloud provider please make a pull request
@@ -151,7 +151,7 @@ chef exec bundle exec rake style_only
 
 ## Further Development Notes
 
-### Git & Signed Commit Data
+### Git & Signing Commit Data
 
 IF you wish to follow the upstream (Begley Brothers Inc.) git workflow
 (not required):
@@ -162,139 +162,12 @@ git config --local include.path ../.git-config
 
 By inspecting `.git-config` you will see this assumes:
 
-- Isolated SSH keys dedicated to Git usage (minimizing the blast radius from compromised keys)
-- SSH key files named `<git-user@email>` and `<git-user@email>`.pub
-- SSH keys located in the Git [XDG Desktop Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) folder.
-- [Signify](https://www.openbsd.org/papers/bsdcan-signify.html) signed commits
+* Isolated SSH keys dedicated to Git usage (minimizing the blast radius from
+  compromised keys)
+* SSH key files named `<git-user@email>` and `<git-user@email>`.pub
+* SSH keys located in the Git [XDG Desktop Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) folder.
+* GPG signing is delegated to `signify-notes` script in `./scripts`.
+* [Signify](https://www.openbsd.org/papers/bsdcan-signify.html) signed commits
   stored as Git notes with the parent commit ID.
-
-Name the following script `signify-notes` and place it in your path, say
-`${XDG_DATA_HOME}/signify/bin`, then link `${XDG_DATA_HOME}/signify/bin/signify-notes`
-to ``${XDG_DATA_HOME}/bin`, which should be in your `${PATH}`:
-
-```bash
-XDG_DATA_HOME=~/.local
-mkdir -p ${XDG_DATA_HOME}/signify/bin
-tee ${XDG_DATA_HOME}/signify/bin/signify-notes > /dev/null <<'EOF'
-#!/usr/bin/env bash
-# Usage:
-# ======
-# `signify-notes [GIT COMMAND]` - Git with signify(1) signatures as `git notes`
-#
-# To see the signature added as `git notes`:
-#
-#```bash
-# $ git log -2 --notes|less
-#```
-#
-# First, you need to set the signing key for the repo.
-# Example:
-#
-#```bash
-# git config --local --add commit.gpgsign true
-# git config --local --add user.signingKey "${XDG_CONFIG_HOME}/git/$(git config --local --includes --get user.email).sec"
-# git config --local --add gpg.program signify-notes
-#```
-#
-# This will use the keys <user.email>.sec and <user.email>.pub which, under the
-# XDG Desktop Base Directory Specification, are located under ${XDG_CONFIG_HOME}.
-#
-# Then you can use
-#
-#```bash
-# signify-notes commit -S
-# signify-notes verify-commit (a no-op: you verify commits not Git)
-#
-# signify-notes tag -s
-# signify-notes verify-tag (a no-op: you verify tags not Git)
-#```
-#
-# Debug Git:
-#
-#```bash
-# git config --global trace2.normalTarget /tmp/git.trace2.normal.log
-#```
-
-short_date=$(/bin/date +%m%d%y)
-log_file="/tmp/signify-notes-${short_date}.log"
-exec {BASH_XTRACEFD}>>${log_file}
-set -o xtrace
-
-function getkey () {
-  key_sec="$(git config --includes --get user.signingKey)";
-  if [ ! -f "${key_sec}" ]; then
-    key_sec=$1
-  fi
-  if [ ! -f "${key_sec}" ];
-  then
-    echo 'signify-notes: no user.signingKey defined!' 1>&2;
-    exit 1;
-  fi;
-  export key_sec;
-  export key_sec_name=$(basename "$key_sec")
-}
-
-  while :; do
-    case "${1}" in
-      -bsau)
-          # The command invoked when Signify piggybacks on Git GnuPG support:
-          #
-          # $ <path>/signify-notes --status-fd=2 -bsau ${XDG_CONFIG_HOME}/git/<user@company.com>.sec
-          err_sum=0
-          getkey
-          filename=$(basename "$0")
-          msg_file="$(mktemp /tmp/${filename}.commit.msg.$$.XXXXXX)"
-          err_sum=$((err_sum+$?))
-          sig_file="$(mktemp /tmp/${filename}.commit.sig.$$.XXXXXXX)"
-          err_sum=$((err_sum+$?))
-          # Git sends the commit message to sign via stdin.
-          dd status=none status=noxfer if=/dev/stdin of=${msg_file} &>/dev/null
-          err_sum=$((err_sum+$?))
-          if command -v signify-openbsd >/dev/null 2>&1
-          then
-            signify-openbsd -S -e -x "${sig_file}" -s "${key_sec}" -m "${msg_file}"
-            err_sum=$((err_sum+$?))
-          elif command -v signify >/dev/null 2>&1
-          then
-            signify -S -e -x "${sig_file}" -s "${key_sec}" -m "${msg_file}"
-            err_sum=$((err_sum+$?))
-          fi
-          if [ ${err_sum} -eq 0 ] && [ -n "$statusfd" ]; then
-            git_note_added="$(git notes add --file=${sig_file})"
-            printf '\n[GNUPG:] SIG_CREATED ' >/dev/fd/$statusfd
-            rm --force ${msg_file}
-            rm --force ${sig_file}
-            rm --force ${log_file}
-            exit 0
-          fi
-          exit 1
-        ;;
-      --verify)
-        # Verification is a task for humans. Not Git.
-        # Verifying the parent note would bake in GnuPG cruft.
-        #
-        # Lets not do that.
-        #
-        # But if you wanted to....
-        # An example command invoked when Signify piggybacks on current Git GnuPG support:
-        #
-        # <path>/signify-notes --keyid-format=long --status-fd=1 --verify /tmp/.git_vtag_tmptWyOLU (Incoming signature)
-        echo "[GNUPG:] GOODSIG "
-        exit 0
-        ;;
-      --status-fd=*)
-        statusfd=${1#--status-fd=}
-        shift
-        ;;
-      --*)
-        shift
-        ;;
-      *)
-        exec git -c "gpg.program=$0" "$@"
-        ;;
-    esac
-  done
-EOF
-```
 
 Hope that helps?
