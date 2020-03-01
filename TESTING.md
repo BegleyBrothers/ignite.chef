@@ -10,6 +10,17 @@ This document describes the process for testing using Test-Kitchen.
 |:---------------------------|
 | You accept all responsibility for any costs incurred by running any code in this repository.  |
 
+## Contents
+<!--ts-->
+* [Cookbook TESTING doc](#cookbook-testing-doc)
+  * [Testing Prerequisites](#testing-prerequisites)
+  * [Installing dependencies](#installing-dependencies)
+  * [Lint &amp; Syntax stage](#lint--syntax-stage)
+    * [Unit stage](#unit-stage)
+  * [Integration Testing](#integration-testing)
+    * [Kitchen](#kitchen)
+<!--te-->
+
 ## Testing Prerequisites
 
 1. Ignite `>=0.6.3`
