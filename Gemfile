@@ -21,7 +21,6 @@ group :development do
   gem 'kitchen-transport-speedy'
   gem 'lefthook'
   gem 'rake'
-  gem 'rspec_junit_formatter'
   gem 'rubocop'
 end
 
