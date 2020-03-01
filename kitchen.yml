@@ -1,39 +1,98 @@
---- 
-driver: 
-  name: dokken
-  chef_version: "13.11.3"
-  privileged: true # Because Docker and SystemD/Upstart
-  pull_platform_image: false
-platforms: 
-  - 
-    driver: 
-      image: dokken/ubuntu-18.04
-      pid_one_command: /bin/systemd
-      privileged: true
-    name: ubuntu-18.04
-  - 
-    driver: 
-      image: dokken/ubuntu-19.10
-      pid_one_command: /bin/systemd
-      privileged: true
-    name: ubuntu-19.10
+---
+provisioner:
+  name: chef_zero
+  accept_license: true
+  product_name: chef
+  product_version: 14.14.29
+  install_strategy: once
 
-provisioner: 
-  name: dokken
-  chef_license: 'accept'
-  #chef_binary: /opt/chefdk/embedded/bin/chef exec bundle exec chef-client
-  #chef_options: "-z"
-  chef_log_level: debug
-  chef_output_format: minimal
+platforms:
+- name: amazonlinux
+  driver:
+    cachier: box
+- name: amazonlinux-2
+  driver:
+    cachier: box
+- name: debian-9
+  driver:
+    cachier: box
+- name: centos-7
+  driver:
+    cachier: box
+- name: fedora-latest
+  driver:
+    cachier: box
+- name: ubuntu-16.04
+  driver:
+    cachier: box
+- name: ubuntu-18.04
+  driver:
+    cachier: box
 
-suites: 
-  - 
-    attributes: ~
-    name: default
-    verifier: 
-      inspec_tests: 
-        - test/integration/default
-transport: 
-  name: dokken
-verifier: 
+# The DigitalOcean platforms are to allow integration tests outside a 
+# developer's desktop.  
+# Note this co$t$ you dollar$.
+- name: ubuntu-18
+  driver:
+    name: digitalocean
+    private_networking: false
+    ssh_key: ~/.ssh/id_rsa
+    ssh_key_only: true
+  driver_config:
+    region: nyc1
+    size: 2gb
+verifier:
   name: inspec
+
+transport:
+  name: speedy_ssh
+  ssh_key: ~/.ssh/id_rsa
+  username: vagrant
+
+suites:
+  ###############################
+  # ignite_installation resources
+  ###############################
+  - name: install_ignite
+    includes: [
+      #'ubuntu-16.04',
+      'ubuntu-18'
+    ]
+    attributes:
+      ignite:
+        uri: 'ignt://weaveworks/?file=ignite&version=0.6.3#amd64'
+    provisioner:
+        policyfile: policies/install_ignite.rb
+
+  - name: install_ignited
+    includes: [
+      #'ubuntu-16.04',
+      'ubuntu-18'
+    ]
+    attributes:
+      ignite:
+        uri: 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64'
+    provisioner:
+        policyfile: policies/install_ignited.rb
+
+  - name: install_service
+    includes: [
+      #'ubuntu-16.04',
+      'ubuntu-18'
+    ]
+    attributes:
+      ignite:
+        uri: 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64'
+    provisioner:
+        policyfile: policies/install_service.rb
+
+  - name: smoke
+    includes: [
+      #'ubuntu-16.04',
+      'ubuntu-18'
+    ]
+    attributes:
+      ignite:
+        uri: 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64'
+    provisioner:
+        policyfile: policies/smoke.rb

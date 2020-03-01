@@ -1,4 +1,7 @@
 pre-commit:
   commands:
-    backend-linter:
-      run: git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop -a --force-exclusion
+    cookstyle:
+      tags: backend style
+      files: git diff-index --cached --name-only HEAD | xargs ls -1 2>/dev/null
+      glob:  '*.rb'
+      run:   bundle exec cookstyle --auto-correct --force-exclusion {files}

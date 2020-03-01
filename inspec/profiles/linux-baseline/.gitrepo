@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/dev-sec/linux-baseline
+	branch = master
+	commit = 1233a136f319a3f2342c35ec06f325b1b0e94b36
+	parent = e0c26839402028cfc8c0951a5430a2d31b692c1b
+	method = merge
+	cmdver = 0.4.1

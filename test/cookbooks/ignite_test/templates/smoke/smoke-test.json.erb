@@ -1,0 +1,16 @@
+{
+  "apiVersion": "ignite.weave.works/v1alpha2",
+  "kind": "VM",
+  "metadata": {
+    "name": "smoke-test",
+    "uid": <%= uuid %>
+  },
+  "spec": {
+    "cpus": 1,
+    "diskSize": "1230MB",
+    "image": {
+      "oci": "weaveworks/ignite-ubuntu"
+    },
+    "memory": "456MB"
+  }
+}

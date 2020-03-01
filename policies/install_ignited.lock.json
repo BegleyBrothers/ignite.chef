@@ -1,0 +1,212 @@
+{
+  "revision_id": "bbfc6a6ae55b6a3ccc81b9a7ec9fb0c31ba97d0dd5ea53af3d67fe862a07dea9",
+  "name": "ignite_kitchen",
+  "run_list": [
+    "recipe[ignite_test::installation_ignited]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "audit": {
+      "version": "9.0.1",
+      "identifier": "b06bd8d14e8bb33744ae0e48e6934683856ee52b",
+      "dotted_decimal_identifier": "49658174869769139.15556638073742995.77530693297451",
+      "cache_key": "audit-9.0.1-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/audit/versions/9.0.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/audit/versions/9.0.1/download",
+        "version": "9.0.1"
+      }
+    },
+    "chef-apt-docker": {
+      "version": "2.0.6",
+      "identifier": "84de3c8e6b44d9674a67236ac94ed71cfe73a306",
+      "dotted_decimal_identifier": "37399048594605273.29073729437485390.236519528047366",
+      "cache_key": "chef-apt-docker-2.0.6-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-apt-docker/versions/2.0.6/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-apt-docker/versions/2.0.6/download",
+        "version": "2.0.6"
+      }
+    },
+    "chef-yum-docker": {
+      "version": "3.1.1",
+      "identifier": "1cae313a109ba62ec6be72c93ae46af1e24c27d1",
+      "dotted_decimal_identifier": "8072825798695846.13166370200566500.117587116304337",
+      "cache_key": "chef-yum-docker-3.1.1-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-yum-docker/versions/3.1.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-yum-docker/versions/3.1.1/download",
+        "version": "3.1.1"
+      }
+    },
+    "docker": {
+      "version": "4.12.0",
+      "identifier": "9e1c0dfa3780f92f62ee1d189334b1b47c878c75",
+      "dotted_decimal_identifier": "44503892678377721.13338098735289140.195388741487733",
+      "cache_key": "docker-4.12.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/docker/versions/4.12.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/docker/versions/4.12.0/download",
+        "version": "4.12.0"
+      }
+    },
+    "git": {
+      "version": "10.0.0",
+      "identifier": "16726d6f9285ca00f4abe4a895dc1a219ea6c4fa",
+      "dotted_decimal_identifier": "6318263836509642.269019112838620.28731697972474",
+      "cache_key": "git-10.0.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/git/versions/10.0.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/git/versions/10.0.0/download",
+        "version": "10.0.0"
+      }
+    },
+    "ignite": {
+      "version": "0.5.0",
+      "identifier": "dd211a602b753dac3d57b1049fb7ae608517de52",
+      "dotted_decimal_identifier": "62242367019382077.48481142835552183.191729573027410",
+      "source": "..",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "24d0317d2351662f1875fd60ad07a3812b116e8c",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": ".."
+      }
+    },
+    "ignite_test": {
+      "version": "0.5.0",
+      "identifier": "cb49632646f3bb73b0c4c9561a802f040fdfe9cd",
+      "dotted_decimal_identifier": "57220110465037243.32563981559667328.51694492707277",
+      "source": "../test/cookbooks/ignite_test",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "24d0317d2351662f1875fd60ad07a3812b116e8c",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "../test/cookbooks/ignite_test"
+      }
+    },
+    "line": {
+      "version": "2.7.0",
+      "identifier": "bfd24d6aacfc884586c420189fc46e121af47ff6",
+      "dotted_decimal_identifier": "53992950495771784.19569950303231940.121024040697846",
+      "cache_key": "line-2.7.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/line/versions/2.7.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/line/versions/2.7.0/download",
+        "version": "2.7.0"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "audit",
+        "= 9.0.1"
+      ],
+      [
+        "chef-apt-docker",
+        "= 2.0.6"
+      ],
+      [
+        "chef-yum-docker",
+        "= 3.1.1"
+      ],
+      [
+        "docker",
+        "= 4.12.0"
+      ],
+      [
+        "git",
+        "= 10.0.0"
+      ],
+      [
+        "ignite",
+        ">= 0.0.0"
+      ],
+      [
+        "ignite_test",
+        "= 0.5.0"
+      ],
+      [
+        "line",
+        "= 2.7.0"
+      ]
+    ],
+    "dependencies": {
+      "audit (9.0.1)": [
+
+      ],
+      "chef-apt-docker (2.0.6)": [
+
+      ],
+      "chef-yum-docker (3.1.1)": [
+
+      ],
+      "docker (4.12.0)": [
+
+      ],
+      "git (10.0.0)": [
+
+      ],
+      "ignite (0.5.0)": [
+        [
+          "audit",
+          ">= 0.0.0"
+        ],
+        [
+          "chef-apt-docker",
+          ">= 0.0.0"
+        ],
+        [
+          "chef-yum-docker",
+          ">= 0.0.0"
+        ],
+        [
+          "docker",
+          ">= 0.0.0"
+        ],
+        [
+          "git",
+          ">= 0.0.0"
+        ],
+        [
+          "line",
+          ">= 0.0.0"
+        ]
+      ],
+      "ignite_test (0.5.0)": [
+        [
+          "ignite",
+          ">= 0.0.0"
+        ]
+      ],
+      "line (2.7.0)": [
+
+      ]
+    }
+  }
+}

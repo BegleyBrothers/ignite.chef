@@ -1,6 +1,8 @@
-# SPDX-License-Identifier: MIT
-# Copyright:: 2020, Begley Brothers.
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
 #
-# Cookbook:: weaveworks-ignite
+# See details in LICENSE.
+
+# Cookbook:: ignite
 # Recipe:: default
 #

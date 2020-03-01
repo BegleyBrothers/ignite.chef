@@ -1,35 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2020 Begley Brothers Inc.
+#
+# See details in LICENSE.
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache 2.0
 # Copyright:: 2020, Begley Brothers.
 #
 
 source 'https://rubygems.org'
 
-# gem 'chef'
-
-gem 'rake'
-
 group :development do
-  # gem 'chef-cli'
   gem 'chef-dk'
-  gem 'kitchen-inspec'
+  gem 'chefspec'
+  gem 'cookstyle'
+  gem 'coveralls', "~>0.8.23", :require => false
+  gem 'ffi-libarchive'
   gem 'inspec'
-  # lefthook related:
+  gem 'kitchen-transport-speedy'
   gem 'lefthook'
+  gem 'rake'
+  gem 'rspec_junit_formatter'
   gem 'rubocop'
-  # gem 'pronto'
-  # gem 'pronto-rubocop', require: false
-  # gem 'pronto-flay', require: false
+  gem 'simplecov'
 end
 
 group :integration do
   gem 'test-kitchen'
-  gem 'kitchen-local', :git => 'https://github.com/gengo/kitchen-local.git'
-  gem 'kitchen-docker'
-end
-
-group :dokken do
-  gem 'kitchen-dokken'
+  gem 'kitchen-digitalocean'
+  gem 'kitchen-inspec'
 end

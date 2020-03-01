@@ -1,0 +1,28 @@
+AllCops:
+  TargetRubyVersion: 2.5.5
+  Exclude:
+    - 'app/views/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'csv/**/*'
+    - 'slate/**/*'
+    - 'vendor/bundle/**/*'
+    - 'node_modules/**/*'
+
+# Style/Copyright:
+#   Enabled: true
+#   Notice: '^# Copyright \(c\) 2020 Begley Brothers Inc\.'
+#   AutocorrectNotice: | 
+#     # SPDX-License-Identifier: Apache-2.0
+#     # Copyright (c) 2020 Begley Brothers Inc.
+#     #
+#     # See details in LICENSE.
+
+Layout/AlignHash:
+  Enabled: true
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
+  EnforcedStyle: mixed
