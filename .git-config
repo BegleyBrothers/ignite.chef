@@ -11,7 +11,7 @@
 [credential]
 	helper = cache --timeout=3600
 [gpg]
-	program = signify-notes
+	program = ./scripts/signify-notes
 [remote "upstream"]
 	url = url = git@github.com:BegleyBrothers/cookbook-ignite.git
 	fetch = +refs/heads/*:refs/remotes/upstream/*
