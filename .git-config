@@ -1,8 +1,5 @@
 [branch]
   autosetupmerge = true
-[branch "develop"]
-	remote = origin
-	merge = refs/heads/develop
 [commit]
   gpgsign = true
 	template = .git-message

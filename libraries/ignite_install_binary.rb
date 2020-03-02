@@ -21,7 +21,7 @@ module IgniteCookbook
               desired_state: false,
               description:   'Constrain URL construction to Ignite URIs.'
     property  :install_docker, [true, false],
-              default:     false,
+              default:     true,
               description: 'Install Docker service. Warning: Docker support is deprecated, and will be removed in a future release.'
     property  :serio_i8042, String,
               default:     'y',

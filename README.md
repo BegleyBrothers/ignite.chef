@@ -22,14 +22,14 @@ Install Weaveworks [Ignite](https://ignite.readthedocs.io/en/stable/index.html).
 
 ## Contents
 <!--ts-->
-* [Ignite: Micro-VM launcher](#ignite-micro-vm-launcher)
-  * [Usage](#usage)
-  * [Development](#development)
-    * [Test-Kitchen](#test-kitchen)
-    * [CI/CD &amp; End-to-End Integration Tests](#cicd--end-to-end-integration-tests)
-    * [CircleCI](#circleci)
-  * [Further Development Notes](#further-development-notes)
-    * [Git &amp; Signed Commit Data](#git--signed-commit-data)
+* [Usage](#usage)
+  * [Distributions &amp; Releases](#distributions--releases)
+* [Development](#development)
+  * [Test-Kitchen](#test-kitchen)
+  * [CI/CD &amp; End-to-End Integration Tests](#cicd--end-to-end-integration-tests)
+  * [CircleCI](#circleci)
+* [Further Development Notes](#further-development-notes)
+  * [Git &amp; Signing Commit Data](#git--signing-commit-data)
 <!--te-->
 
 ## Usage
@@ -46,6 +46,38 @@ in `test/cookbooks/ignite_test` shows how to install:
    `/etc/firecracker/manifests`.
    When the file is written, the `ignite-ignited` service launches the micro-VM.
 
+```ruby
+# The `ignite_service` create action installs `ignited`
+ignite_service 'ignited' do
+  action [:create, :start]  # :delete, :restart, :stop
+  install_method 'binary'   # 'package' 'tarball' 'none'
+  service_manager 'systemd' # 'execute' 'systemd' 'sysvinit' 'upstart'
+  uri 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64' # Conforms to URI spec
+  ignited_bin '/usr/bin/ignited' # Path (incl. filename) to install `ignited` executable
+end
+
+ignite_installation_binary 'default' do
+  action :install      # :uninstall
+  ignited_bin '/usr/bin/ignite' # Path (incl. filename) to install `ignite` executable
+  install_docker true  # false
+  keyboard_atkbd 'y'   # 'n'
+  serio_i8042 'y'      # 'n'
+  uri 'ignt://weaveworks/?file=ignite&version=0.6.3#amd64' # Conforms to URI spec
+end
+
+# Not required if you have created the `ignite_service`
+ignited_installation_binary 'default' do
+  action :install      # :uninstall
+  ignited_bin '/usr/bin/ignited' # Path (incl. filename) to install `ignited` executable
+  install_docker true  # false
+  keyboard_atkbd 'y'   # 'n'
+  serio_i8042 'y'      # 'n'
+  uri 'ignt://weaveworks/?file=ignited&version=0.6.3#amd64' # Conforms to URI spec
+end
+```
+
+### Distributions & Releases
+
 The version 1.0 release has only been tested on Ubuntu 18.04 (Bionic Beaver).
 However, this cookbook library supports the following distributions:
 
@@ -55,7 +87,7 @@ However, this cookbook library supports the following distributions:
 | :o:              | Centos                  | Any      | TBC    |
 | :o:              | Scientific Linux        | Any      | TBC    |
 | :o:              | Oracle                  | Any      | TBC    |
-| :o:              | Debian                  | Any      | TBC    |
+|:heavy_check_mark:| Debian                  | 10       | Tested (DigitalOcean) |
 | :o:              | Fedora                  | Any      | TBC    |
 | :o:              | Redhat Enterprise Linux | Any      | TBC    |
 |:heavy_check_mark:| Ubuntu                  | 18.04    | Tested (DigitalOcean) |
