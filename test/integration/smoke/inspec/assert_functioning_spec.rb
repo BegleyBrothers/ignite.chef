@@ -16,10 +16,19 @@ unless os.windows?
   end
 end
 
-describe command('grep loop /lib/modules/$(uname -r)/modules.builtin') do
-  its('stdout') { should eq "kernel/drivers/block/loop.ko\n" }
-  its('stderr') { should eq '' }
-  its('exit_status') { should eq 0 }
+case os[:family]
+  when 'debian'
+    describe command('lsmod | grep loop') do
+      its('stdout') { should match(/^loop/) }
+      its('stderr') { should eq '' }
+      its('exit_status') { should eq 0 }
+    end
+  when 'ubuntu'
+    describe command('grep loop /lib/modules/$(uname -r)/modules.builtin') do
+      its('stdout') { should eq "kernel/drivers/block/loop.ko\n" }
+      its('stderr') { should eq '' }
+      its('exit_status') { should eq 0 }
+    end
 end
 
 describe kernel_module('br_netfilter') do
