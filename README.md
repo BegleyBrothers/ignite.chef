@@ -76,10 +76,22 @@ ignited_installation_binary 'default' do
 end
 ```
 
+### Service Managers
+
+The version 1.0 release has been tested with `systemd` service manager.
+However, this cookbook library aims to support the following service managers:
+
+| Status             | Service Manager | Releases | Detail           |
+|:------------------:|-----------------|----------|------------------|
+| :heavy_check_mark: | Systemd         | Any      | Debian/Ubuntu    |
+| :o:                | Sysvinit        | Any      | TBC              |
+| :o:                | Upstart         | Any      | TBC              |
+
 ### Distributions & Releases
 
-The version 1.0 release has only been tested on Ubuntu 18.04 (Bionic Beaver).
-However, this cookbook library supports the following distributions:
+The version 1.0 release has been tested on Debian 10 (Buster) and
+Ubuntu 18.04 (Bionic Beaver).
+However, this cookbook library aims to supports the following distributions:
 
 | Status           | Distribution            | Releases | Detail |
 |:----------------:|-------------------------|----------|--------|
@@ -92,9 +104,9 @@ However, this cookbook library supports the following distributions:
 | :o:              | Redhat Enterprise Linux | Any      | TBC    |
 |:heavy_check_mark:| Ubuntu                  | 18.04    | Tested (DigitalOcean) |
 
-If you are able to confirm the following test suite completes for any distro
-release in the table above and for any cloud provider please make a pull request
-updating the table above.
+If you are able to confirm the following test suite completes for any
+distribution & release in the table above and for any cloud provider please
+make a pull request updating the table above.
 
 | :warning: WARNING          |
 |:---------------------------|
