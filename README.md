@@ -9,8 +9,8 @@ Install Weaveworks [Ignite](https://ignite.readthedocs.io/en/stable/index.html).
 
 |Branch  | CI Status |
 |--------|-----------|
-| `master` | [![BegleyBrothers](https://circleci.com/gh/BegleyBrothers/cookbook-ignite/tree/master.svg?style=svg)](https://circleci.com/gh/BegleyBrothers/cookbook-ignite/tree/master) |
-| `develop` | [![BegleyBrothers](https://circleci.com/gh/BegleyBrothers/cookbook-ignite/tree/develop.svg?style=svg)](https://circleci.com/gh/BegleyBrothers/cookbook-ignite/tree/develop) |
+| `master` | [![CircleCI](https://circleci.com/gh/BegleyBrothers/chef-ignite/tree/master.svg?style=svg)](https://circleci.com/gh/BegleyBrothers/chef-ignite/tree/master) |
+| `develop` | [![CircleCI](https://circleci.com/gh/BegleyBrothers/chef-ignite/tree/develop.svg?style=svg)](https://circleci.com/gh/BegleyBrothers/chef-ignite/tree/develop) |
 
 | :warning: WARNING          |
 |:---------------------------|
