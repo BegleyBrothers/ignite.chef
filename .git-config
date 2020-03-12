@@ -4,7 +4,7 @@
   gpgsign = true
 	template = .git-message
 [core]
-  sshCommand = ssh -i ~/.ssh/$(git config --get --local --includes user.email)_ed25519 -F /dev/null
+  sshCommand = ssh -o StrictHostKeyChecking=no -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -i ~/.config/git/$(git config --get --local --includes user.email) -F /dev/null
 [gpg]
 	program = ./scripts/signify-notes
 [remote "upstream"]
